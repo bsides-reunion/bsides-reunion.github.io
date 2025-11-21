@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSides Réunion - Appel à Sponsors</title>
+
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuration des polices et couleurs -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bsides-primary': '#E76020', // Orange du logo
+                        'bsides-title': '#a3b7ca',
+                        'bsides-dark': '#1F2937',    // Gris foncé
+                        'bsides-bg': '#F9FAFB',      // Fond clair
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .section-header {
+            border-left: 5px solid #E76020;
+        }
+    </style>
+</head>
+<body class="bg-bsides-bg text-bsides-dark font-sans antialiased">
+
+    <!-- En-tête (Navbar) -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center space-x-2">
+                <img src="../img/logo.png" alt="Logo BSides Réunion" class="h-8 md:h-10">
+                <span class="text-2xl font-bold text-bsides-dark hidden md:inline"></span>
+            </a>
+            <nav class="hidden md:flex space-x-6 text-bsides-dark font-medium">
+                <a href="../index.html" class="hover:text-bsides-primary transition duration-150">Accueil</a>
+                <!-- Tu peux ajouter d'autres liens ici (Programme, CFP, etc.) -->
+            </nav>
+            <!-- Menu burger pour mobile -->
+            <button id="menu-button" class="md:hidden p-2 rounded-lg text-bsides-dark hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Menu mobile déroulant -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-100">
+            <nav class="flex flex-col space-y-2 p-4 text-bsides-dark font-medium">
+                <a href="../index.html" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Accueil</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Hero / Intro -->
+        <section id="appel-sponsor" class="py-8 border-t border-gray-200">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Appel à sponsors</h1>
+            <p class="text-lg md:text-xl text-justify max-w-3xl">
+                BSides Réunion est une conférence communautaire dédiée à la sécurité de l’information.
+                Pour maintenir un événement accessible, de qualité et ouvert au plus grand nombre,
+                nous recherchons des partenaires prêts à nous accompagner.
+                En sponsorisant BSides Réunion, vous soutenez l’écosystème cybersécurité local
+                tout en bénéficiant d’une visibilité ciblée auprès d’un public de passionnés et de professionnels.
+            </p>
+        </section>
+
+        <!-- Pourquoi sponsoriser -->
+        <section class="py-8">
+            <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">Pourquoi sponsoriser BSides Réunion&nbsp;?</h2>
+            <div class="grid gap-6 md:grid-cols-2">
+                <div class="bg-white p-6 rounded-xl shadow-lg space-y-3">
+                    <h3 class="text-xl font-bold">Un public qualifié</h3>
+                    <p class="text-justify">
+                        La conférence rassemble des professionnels de la cybersécurité, des étudiants, des chercheurs,
+                        des responsables IT, des développeurs et des passionné·e·s de sécurité informatique.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg space-y-3">
+                    <h3 class="text-xl font-bold">Visibilité et image</h3>
+                    <p class="text-justify">
+                        Associez votre marque à un événement communautaire indépendant, axé sur le partage de
+                        connaissances, l’éthique et la sécurité de l’information.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg space-y-3">
+                    <h3 class="text-xl font-bold">Rencontres &amp; recrutement</h3>
+                    <p class="text-justify">
+                        Profitez de l’événement pour échanger avec des profils techniques, repérer de futurs talents
+                        et renforcer votre réseau professionnel sur l’île de La Réunion et au-delà.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg space-y-3">
+                    <h3 class="text-xl font-bold">Soutien à la communauté</h3>
+                    <p class="text-justify">
+                        Votre soutien contribue à proposer des contenus de qualité, à accueillir les participant·e·s
+                        dans de bonnes conditions et à développer la communauté sécurité locale.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formules de sponsoring -->
+        <section class="py-8">
+            <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">Nos formules de sponsoring</h2>
+            <p class="mb-6 text-justify max-w-3xl">
+                Les montants et avantages ci-dessous sont indicatifs et peuvent être adaptés à vos besoins.
+                N’hésitez pas à nous contacter pour discuter d’un partenariat sur mesure.
+            </p>
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <!-- Bronze -->
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">Sponsor Bronze</h3>
+                    <p class="text-sm text-gray-500 mb-4">À partir de 200 €</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 text-sm">
+                        <li>Logo sur le site web de l’événement</li>
+                        <li>Logo sur le support de remerciements</li>
+                        <li>Mention sur les réseaux sociaux</li>
+                    </ul>
+                    <p class="mt-auto text-xs text-gray-500">
+                        Idéal pour les structures souhaitant soutenir l’événement et gagner une première visibilité.
+                    </p>
+                </div>
+
+                <!-- Silver -->
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">Sponsor Silver</h3>
+                    <p class="text-sm text-gray-500 mb-4">À partir de 1000 €</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 text-sm">
+                        <li>Tous les avantages Bronze</li>
+                        <li>Logo sur les supports de communication (slides d’ouverture/clôture)</li>
+                        <li>Possibilité de fournir des goodies pour les participant·e·s</li>
+                    </ul>
+                    <p class="mt-auto text-xs text-gray-500">
+                        Pour une visibilité accrue tout en soutenant concrètement l’événement.
+                    </p>
+                </div>
+
+                <!-- Gold -->
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">Sponsor Gold</h3>
+                    <p class="text-sm text-gray-500 mb-4">À partir de 2000 €</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 text-sm">
+                        <li>Tous les avantages Silver</li>
+                        <li>Logo mis en avant (taille supérieure)</li>
+                        <li>Espace stand / table pour échanger avec les participant·e·s</li>
+                        <li>Possibilité de proposer un lot pour tirage au sort</li>
+                    </ul>
+                    <p class="mt-auto text-xs text-gray-500">
+                        Idéal pour les entreprises souhaitant être fortement visibles et présentes sur place.
+                    </p>
+                </div>
+
+                <!-- Platinum -->
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">Sponsor Platinum</h3>
+                    <p class="text-sm text-gray-500 mb-4">À partir de 5000 €</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 text-sm">
+                        <li>Tous les avantages Gold</li>
+                        <li>Logo en tête d’affiche parmi les partenaires</li>
+                        <li>Possibilité de mot d’introduction (selon format et programme)</li>
+                        <li>Présence renforcée sur les supports et communications</li>
+                    </ul>
+                    <p class="mt-auto text-xs text-gray-500">
+                        Pour un partenariat stratégique et une visibilité maximale.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visibilité & publics -->
+        <section class="py-8">
+            <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">Visibilité &amp; publics</h2>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-4">
+                <p class="text-justify">
+                    En tant que sponsor, votre marque pourra être mise en avant avant, pendant et après l’événement
+                    (site web, supports de présentation, réseaux sociaux, communication auprès des participant·e·s,
+                    etc. selon la formule choisie).
+                </p>
+                <p class="text-justify">
+                    BSides Réunion s’adresse aux professionnels de la cybersécurité, aux étudiant·e·s, aux personnes
+                    en reconversion, aux communautés techniques et au tissu local de l’IT et de la sécurité.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="py-8">
+            <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">Nous contacter</h2>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-4 max-w-2xl">
+                <p class="text-justify">
+                    Intéressé·e pour devenir sponsor de BSides Réunion, obtenir le kit de sponsoring
+                    ou discuter d’un partenariat sur mesure&nbsp;?
+                </p>
+                <p>
+                    Écrivez-nous à l’adresse suivante&nbsp;:
+                </p>
+                <p class="text-lg font-semibold">
+                    <a href="mailto:contact@bsides-reunion.re"
+                       class="text-bsides-primary hover:underline">
+                        contact@bsides-reunion.re
+                    </a>
+                </p>
+                <p class="text-sm text-gray-600">
+                    Merci d’indiquer le nom de votre structure, vos coordonnées, ainsi que le type de partenariat
+                    que vous envisagez. Nous reviendrons vers vous dans les meilleurs délais.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-bsides-dark text-white p-8 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2026 BSides Réunion. Tous droits réservés.</p>
+            <div class="mt-2 text-sm space-x-4">
+                <a href="legal.html" class="hover:text-bsides-primary transition duration-150">
+                    Mentions Légales
+                </a>
+                <a href="code.html" class="hover:text-bsides-primary transition duration-150">
+                    Code de Conduite
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JavaScript pour le menu mobile -->
+    <script>
+        // Gestion du menu mobile (Burger)
+        document.getElementById('menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cacher le menu mobile après un clic sur un lien
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>

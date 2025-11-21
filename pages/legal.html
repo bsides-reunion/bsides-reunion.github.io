@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSides Réunion - Mentions Légales</title>
+
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuration des polices et couleurs -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bsides-primary': '#E76020',
+                        'bsides-title': '#a3b7ca',
+                        'bsides-dark': '#1F2937',
+                        'bsides-bg': '#F9FAFB',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .section-header {
+            border-left: 5px solid #E76020;
+        }
+    </style>
+</head>
+
+<body class="bg-bsides-bg text-bsides-dark font-sans antialiased">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center space-x-2">
+                <img src="../img/logo.png" alt="Logo BSides Réunion" class="h-8 md:h-10">
+                <span class="text-2xl font-bold text-bsides-dark hidden md:inline"></span>
+            </a>
+
+            <nav class="hidden md:flex space-x-6 text-bsides-dark font-medium">
+                <a href="../index.html" class="hover:text-bsides-primary">Accueil</a>
+            </nav>
+
+            <button id="menu-button" class="md:hidden p-2 rounded-lg text-bsides-dark hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-100">
+            <nav class="flex flex-col space-y-2 p-4 text-bsides-dark font-medium">
+                <a href="../index.html" class="p-2 hover:bg-bsides-bg rounded-md">Accueil</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <section id="mentions-legales" class="py-12 border-t border-gray-200">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Mentions Légales</h1>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-10">
+
+                <!-- Éditeur -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">1. Éditeur du site</h2>
+
+                    <p class="mb-2"><strong>Nom du site :</strong> BSides Réunion</p>
+                    <p class="mb-2"><strong>Adresse du site :</strong>
+                        <a href="https://bsides-reunion.re" class="text-bsides-primary hover:underline">
+                            https://bsides-reunion.re
+                        </a>
+                    </p>
+
+                    <p class="mb-2"><strong>Responsable de la publication :</strong> Tahiry RAZAFINDRALAMBO</p>
+                    <p class="mb-2"><strong>Statut juridique :</strong> Personne physique</p>
+
+                    <p class="mb-2"><strong>Email de contact :</strong>
+                        <a href="mailto:contact@bsides-reunion.re"
+                           class="text-bsides-primary hover:underline">contact@bsides-reunion.re</a>
+                    </p>
+                </section>
+
+                <!-- Hébergeur -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">2. Hébergement du site</h2>
+
+                    <p class="mb-2"><strong>Hébergeur :</strong> OVH SAS</p>
+                    <p class="mb-2"><strong>Adresse :</strong> 2 rue Kellermann, 59100 Roubaix, France</p>
+                    <p class="mb-2"><strong>Site web :</strong>
+                        <a href="https://www.ovh.com" class="text-bsides-primary hover:underline">https://www.ovh.com</a>
+                    </p>
+                </section>
+
+                <!-- Propriété intellectuelle -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">3. Propriété intellectuelle</h2>
+                    <p>Le contenu du site (textes, images, logos, graphismes, vidéos, etc.) est protégé par le droit de la
+                        propriété intellectuelle. Toute reproduction, distribution ou modification sans autorisation préalable
+                        est interdite.</p>
+                </section>
+
+                <!-- Données personnelles -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">4. Données personnelles</h2>
+                    <p>Le site peut collecter des données lors de l’envoi d’un formulaire ou d’une demande d’information.</p>
+                    <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification et de suppression de vos données.</p>
+                    <p>Pour exercer vos droits, contactez : 
+                        <a href="mailto:contact@bsides-reunion.re"
+                           class="text-bsides-primary hover:underline">contact@bsides-reunion.re</a>
+                    </p>
+                </section>
+
+                <!-- Cookies -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">5. Cookies</h2>
+                    <p>Le site peut utiliser des cookies pour améliorer l’expérience utilisateur. Vous pouvez configurer votre
+                        navigateur pour les refuser.</p>
+                </section>
+
+                <!-- Responsabilité -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">6. Responsabilité</h2>
+                    <p>Le responsable du site ne pourra être tenu responsable en cas d’interruption, bug, inexactitude ou dommage
+                       lié à l’utilisation du site.</p>
+                </section>
+
+                <!-- Liens externes -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">7. Liens externes</h2>
+                    <p>Le site peut contenir des liens vers d’autres sites. BSides Réunion n’est pas responsable de leur contenu
+                        ou de leur fonctionnement.</p>
+                </section>
+
+                <!-- Droit applicable -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">8. Droit applicable</h2>
+                    <p>Les mentions légales sont régies par le droit français.</p>
+                </section>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-bsides-dark text-white p-8 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2026 BSides Réunion. Tous droits réservés.</p>
+            <div class="mt-2 text-sm space-x-4">
+                <a href="#" class="hover:text-bsides-primary">Mentions Légales</a>
+                <a href="code.html" class="hover:text-bsides-primary">Code de Conduite</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script mobile -->
+    <script>
+        document.getElementById('menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

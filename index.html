@@ -11,6 +11,7 @@
                 extend: {
                     colors: {
                         'bsides-primary': '#E76020', // L'orange du logo
+                        'bsides-title': '#a3b7ca', // L'orange du logo
                         'bsides-dark': '#1F2937', // Un gris foncé pour le texte/fond
                         'bsides-bg': '#F9FAFB', // Un fond très clair
                     },
@@ -43,7 +44,7 @@
     <!-- En-tête (Navbar) --><header class="sticky top-0 bg-white shadow-md z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#accueil" class="flex items-center space-x-2">
-                <img src="https://i.imgur.com/K1b0O1F.png" alt="Logo BSides Réunion" class="h-8 md:h-10"> <!-- Votre logo ici --><span class="text-2xl font-bold text-bsides-dark hidden md:inline">Réunion</span> <!-- Texte "Réunion" à côté du logo --></a>
+                <img src="./img/logo.png" alt="Logo BSides Réunion" class="h-8 md:h-10"> <!-- Votre logo ici --><span class="text-2xl font-bold text-bsides-dark hidden md:inline"></span> <!-- Texte "Réunion" à côté du logo --></a>
             <nav class="hidden md:flex space-x-6 text-bsides-dark font-medium">
                 <a href="#accueil" class="hover:text-bsides-primary transition duration-150">Accueil</a>
                 <a href="#appel-contribution" class="hover:text-bsides-primary transition duration-150">Appel à Contribution</a>
@@ -72,10 +73,11 @@
     <main class="container mx-auto px-4 py-8 md:py-12">
 
         <!-- Section 1: Accueil & Introduction --><section id="accueil" class="mb-16 pt-8">
-            <div class="bg-bsides-primary p-8 md:p-12 rounded-xl text-white shadow-xl mb-12">
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">BSides Réunion 2026</h1>
-                <p class="text-xl md:text-2xl font-light">Le rendez-vous incontournable de la cybersécurité à l'Île de la Réunion.</p>
-                <p class="mt-4 text-lg font-medium">Date : <span class="font-bold">2-3 Avril 2026</span> | Lieu : <span class="font-bold">Saint-Pierre, La Réunion</span></p>
+            <div class="bg-bsides-title p-8 md:p-12 rounded-xl text-white shadow-xl mb-12">
+                <!--<h1 class="text-4xl md:text-5xl font-extrabold mb-4">BSides Réunion 2026</h1>-->
+                <img src="./img/logo.png" alt="logo"/>
+                <p class="text-xl md:text-2xl font-light">Le rendez-vous technique de la cybersécurité à la Réunion.</p>
+                <p class="mt-4 text-lg font-medium">Date : <span class="font-bold">2 Avril 2026</span> | Lieu : <span class="font-bold">Saint-Pierre, La Réunion</span></p>
                 <a href="#" class="mt-6 inline-block bg-bsides-dark text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
                     Réserver votre place
                 </a>
@@ -141,7 +143,7 @@
 
                 <!-- Jour 1 --><div class="bg-white rounded-lg shadow-lg">
                     <button class="w-full text-left p-4 flex justify-between items-center font-bold text-xl text-bsides-dark hover:bg-gray-50 transition duration-150 rounded-t-lg focus:outline-none" onclick="toggleProgram(this)">
-                        <span>Jour 1 - 2 Avril</span>
+                        <span>Jour 1 - 2 Avril / Salle 1</span>
                         <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="program-detail border-t border-gray-100">
@@ -151,47 +153,67 @@
                                 <span class="w-3/4">Accueil et Café</span>
                             </li>
                             <li class="flex justify-between py-3 bg-bsides-bg rounded-md p-2 -mx-2">
-                                <span class="font-medium w-1/4">09:00 - 10:00</span>
+                                <span class="font-medium w-1/4">09:00 - 09:45</span>
                                 <span class="w-3/4 font-semibold text-bsides-primary">Keynote: Joel Grouffaud</span>
                             </li>
-                            <li class="flex justify-between py-3">
+                            <li class="flex justify-between py-3 bg-bsides-bg rounded-md p-2 -mx-2">
                                 <span class="font-medium w-1/4">10:00 - 10:45</span>
-                                <span class="w-3/4">Conférence : Les 10 commandements du DevSecOps</span>
+                                <span class="w-3/4 font-semibold text-bsides-primary">Keynote: Fanilo Harivelo</span>
                             </li>
                             <li class="flex justify-between py-3">
-                                <span class="font-medium w-1/4">12:00 - 13:30</span>
+                                <span class="font-medium w-1/4">11:00 - 11:20</span>
+                                <span class="w-3/4">Conférence : TDB</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">11:30 - 11:50</span>
+                                <span class="w-3/4">Conférence : TDB</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">12:00 - 13:20</span>
                                 <span class="w-3/4 font-semibold text-green-600">Déjeuner & Networking</span>
                             </li>
                             <li class="flex justify-between py-3">
-                                <span class="font-medium w-1/4">13:30 - 17:00</span>
-                                <span class="w-3/4">CTF (Capture The Flag) - Début</span>
+                                <span class="font-medium w-1/4">13:30 - 13:50</span>
+                                <span class="w-3/4">Conférence : TDB</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">14:00 - 14:20</span>
+                                <span class="w-3/4">Conférence : TDB</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">14:30 - 14:50</span>
+                                <span class="w-3/4">Conférence : TDB</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Jour 2 --><div class="bg-white rounded-lg shadow-lg">
+                <!-- Jour 1 --><div class="bg-white rounded-lg shadow-lg">
                     <button class="w-full text-left p-4 flex justify-between items-center font-bold text-xl text-bsides-dark hover:bg-gray-50 transition duration-150 rounded-t-lg focus:outline-none" onclick="toggleProgram(this)">
-                        <span>Jour 2 - 3 Avril</span>
+                        <span>Jour 1 - 2 Avril / Salle 2</span>
                         <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="program-detail border-t border-gray-100">
                         <ul class="divide-y divide-gray-100 p-4 md:p-6">
                             <li class="flex justify-between py-3">
-                                <span class="font-medium w-1/4">09:00 - 09:45</span>
-                                <span class="w-3/4">Atelier : Hacking d'API RESTful</span>
-                            </li>
-                            <li class="flex justify-between py-3 bg-bsides-bg rounded-md p-2 -mx-2">
-                                <span class="font-medium w-1/4">10:00 - 11:00</span>
-                                <span class="w-3/4 font-semibold text-bsides-primary">Keynote: Fanilo Harivelo</span>
+                                <span class="font-medium w-1/4">08:00 - 09:00</span>
+                                <span class="w-3/4">Accueil et Café</span>
                             </li>
                             <li class="flex justify-between py-3">
-                                <span class="font-medium w-1/4">14:00 - 16:00</span>
-                                <span class="w-3/4 font-semibold text-blue-600">Finale CTF & Remise des Prix</span>
+                                <span class="font-medium w-1/4">11:00 - 11:20</span>
+                                <span class="w-3/4">Conférence : TDB</span>
                             </li>
                             <li class="flex justify-between py-3">
-                                <span class="font-medium w-1/4">16:00 - 17:00</span>
-                                <span class="w-3/4">Clôture et Cocktail</span>
+                                <span class="font-medium w-1/4">11:30 - 11:50</span>
+                                <span class="w-3/4">Conférence : TDB</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">12:00 - 13:20</span>
+                                <span class="w-3/4 font-semibold text-green-600">Déjeuner & Networking</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">13:30 - 21:00</span>
+                                <span class="w-3/4">CTF (Capture The Flag) - Début</span>
                             </li>
                         </ul>
                     </div>
@@ -205,7 +227,7 @@
             <div class="grid md:grid-cols-3 gap-8 bg-white p-8 rounded-xl shadow-lg">
                 <div class="md:col-span-2 space-y-4">
                     <p class="text-lg">Préparez-vous pour le défi ultime ! Notre CTF est une compétition amicale qui mettra à l'épreuve vos compétences en exploitation de vulnérabilités, cryptographie, forensique et plus encore.</p>
-                    <p class="text-lg font-semibold text-bsides-primary">Début : Samedi 29 Février, 13:30 | Fin : Dimanche 30 Février, 16:00</p>
+                    <p class="text-lg font-semibold text-bsides-primary">Début :  2 Avril 2026, 15:30 | Fin : 2 Avril 2026, 21:00</p>
 
                     <h3 class="text-2xl font-bold mt-6">Règles et Format</h3>
                     <ul class="list-disc pl-5 space-y-2 text-bsides-dark">
@@ -226,29 +248,29 @@
             <h2 class="text-4xl font-extrabold section-header pl-4 mb-8">Nos Sponsors</h2>
 
             <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-6 text-center">
-                <p class="text-lg">Le succès de BSides Réunion repose sur le soutien de nos précieux partenaires. Merci à tous les sponsors de l'édition précédente et bienvenue aux nouveaux !</p>
+                <p class="text-lg">Le succès de BSides Réunion repose sur le soutien de nos précieux partenaires. Merci à tous les sponsors !</p>
 
                 <!-- Zone des Logos Sponsors (Placeholders) -->
                 <div class="flex flex-wrap justify-center items-center gap-8 py-4 border-y border-gray-100">
                     <!-- Sponsor Niveau Platine -->
                     <div class="w-full md:w-1/3 lg:w-1/4">
-                        <span class="text-xl font-bold text-bsides-dark">PLATINE</span>
+                        <span class="text-xl font-bold text-bsides-dark">Platinium</span>
                         <img src="https://placehold.co/220x60/1F2937/FFFFFF?text=Enterprise+A" alt="Sponsor Enterprise A" class="mx-auto mt-2 rounded-md shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/220x60/1F2937/FFFFFF?text=Enterprise+A';" />
                     </div>
                     <!-- Sponsor Niveau Or -->
                     <div class="w-1/2 md:w-1/4 lg:w-1/6">
-                        <span class="text-lg font-semibold text-gray-700">OR</span>
+                        <span class="text-lg font-semibold text-gray-700">Gold</span>
                         <img src="https://placehold.co/150x50/374151/FFFFFF?text=Company+B" alt="Sponsor Company B" class="mx-auto mt-2 rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x50/374151/FFFFFF?text=Company+B';" />
                     </div>
                     <!-- Sponsor Niveau Argent -->
                     <div class="w-1/3 md:w-1/5 lg:w-1/8">
-                        <span class="text-base font-medium text-gray-500">ARGENT</span>
+                        <span class="text-base font-medium text-gray-500">Silver</span>
                         <img src="https://placehold.co/100x40/6B7280/FFFFFF?text=Tech+C" alt="Sponsor Tech C" class="mx-auto mt-2 rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/100x40/6B7280/FFFFFF?text=Tech+C';" />
                     </div>
                 </div>
                 
                 <p class="text-lg pt-4">Intéressé(e) à soutenir la communauté de cybersécurité à La Réunion ?</p>
-                <a href="#" class="inline-block bg-bsides-primary text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-orange-700 transition duration-300">
+                <a href="./pages/sponsors.html" class="inline-block bg-bsides-primary text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-orange-700 transition duration-300">
                     Devenir Sponsor
                 </a>
             </div>
@@ -258,7 +280,7 @@
             <h2 class="text-4xl font-extrabold section-header pl-4 mb-8">Localisation</h2>
 
             <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-4">
-                <p class="text-lg font-semibold">Lieu : ESIROI - Saint-Pierre </p>
+                <p class="text-lg font-semibold">Lieu : Saint-Pierre </p>
                 <p class="text-lg">Adresse : 40 av Soweto, 97410 Saint-Pierre, La Réunion.</p>
 
                 <!-- Carte Google Maps Placeholder --><div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center border-2 border-gray-300">
@@ -268,10 +290,11 @@
 
                 <h3 class="text-2xl font-bold mt-6">Accès</h3>
                 <ul class="list-disc pl-5 space-y-2 text-bsides-dark">
-                    <li><span class="font-semibold">Bus :</span> Ligne Z - Arrêt "Technopole".</li>
-                    <li><span class="font-semibold">Voiture :</span> Parking gratuit disponible sur place.</li>
-                    <li><span class="font-semibold">Depuis l'Aéroport :</span> Environ 15 minutes en taxi ou voiture.</li>
+                    <li><span class="font-semibold">Bus :</span> Arrêt "Technopole".</li>
+                    <li><span class="font-semibold">Voiture :</span> Direction Saint-Joseph, sortie IUT/ESIROI.</li>
                 </ul>
+                <p class="text-lg">Privilégiez la marche, le vélo ou le co-voiturage.</p>
+
             </div>
         </section>
 
@@ -281,8 +304,8 @@
         <div class="container mx-auto text-center">
             <p>&copy; 2026 BSides Réunion. Tous droits réservés.</p>
             <div class="mt-2 text-sm space-x-4">
-                <a href="#mentions-legales" class="hover:text-bsides-primary transition duration-150">Mentions Légales</a>
-                <a href="#" class="hover:text-bsides-primary transition duration-150">Code de Conduite</a>
+                <a href="./pages/legal.html" class="hover:text-bsides-primary transition duration-150">Mentions Légales</a>
+                <a href="./pages/code.html" class="hover:text-bsides-primary transition duration-150">Code de Conduite</a>
             </div>
         </div>
     </footer>

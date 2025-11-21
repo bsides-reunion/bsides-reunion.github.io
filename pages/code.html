@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSides Réunion - Code de Conduite</title>
+
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuration des polices et couleurs -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bsides-primary': '#E76020', // Orange du logo
+                        'bsides-title': '#a3b7ca',
+                        'bsides-dark': '#1F2937',    // Gris foncé
+                        'bsides-bg': '#F9FAFB',      // Fond clair
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .section-header {
+            border-left: 5px solid #E76020;
+        }
+        .program-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+        .program-detail.open {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-bsides-bg text-bsides-dark font-sans antialiased">
+
+    <!-- En-tête (Navbar) -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center space-x-2">
+                <img src="../img/logo.png" alt="Logo BSides Réunion" class="h-8 md:h-10">
+                <span class="text-2xl font-bold text-bsides-dark hidden md:inline"></span>
+            </a>
+            <nav class="hidden md:flex space-x-6 text-bsides-dark font-medium">
+                <a href="../index.html" class="hover:text-bsides-primary transition duration-150">Accueil</a>
+            </nav>
+            <!-- Menu burger pour mobile -->
+            <button id="menu-button" class="md:hidden p-2 rounded-lg text-bsides-dark hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-100">
+            <nav class="flex flex-col space-y-2 p-4 text-bsides-dark font-medium">
+                <a href="../index.html" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Accueil</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Section : Code of Conduct -->
+        <section id="code-of-conduct" class="py-12 border-t border-gray-200">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Code de Conduite</h1>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-10">
+
+                <!-- 1. Règles -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">1. Règles</h2>
+
+                    <p class="mb-4 text-justify">
+                        BSides Réunion vise à offrir une expérience exempte de tout harcèlement, quels que soient
+                        votre genre, votre identité de genre, votre âge, votre orientation sexuelle, votre handicap,
+                        votre apparence physique, votre poids ou votre religion.
+                    </p>
+
+                    <p class="mb-4">
+                        Le harcèlement peut notamment inclure les comportements suivants :
+                    </p>
+
+                    <ul class="list-disc list-inside space-y-1 mb-4">
+                        <li>
+                            Commentaires liés à la domination sociale, au genre, à l’identité et à l’expression de genre,
+                            à l’orientation sexuelle, au handicap, à l’apparence physique, à la taille, à l’origine,
+                            à l’âge, à la religion ou aux choix technologiques&nbsp;;
+                        </li>
+                        <li>Diffusion d’images à caractère sexuel dans des espaces publics&nbsp;;</li>
+                        <li>Intimidation délibérée d’une personne&nbsp;;</li>
+                        <li>Prise de photos forcée ou non consentie&nbsp;;</li>
+                        <li>Perturbation prolongée d’une conférence ou d’une intervention&nbsp;;</li>
+                        <li>Contact physique inapproprié&nbsp;;</li>
+                        <li>
+                            Encouragement ou soutien de l’un quelconque des comportements ci-dessus.
+                            Les participants à qui un membre de l’équipe ou un autre participant demande
+                            de cesser un comportement de harcèlement doivent s’y conformer immédiatement.
+                        </li>
+                    </ul>
+
+                    <p class="mb-4 text-justify">
+                        Nous nous réservons le droit de prendre toutes les mesures nécessaires pour faire cesser
+                        tout comportement de harcèlement. Cela peut aller d’un simple avertissement jusqu’à l’exclusion
+                        définitive de l’événement, sans possibilité de remboursement.
+                    </p>
+
+                    <p class="mb-0 text-justify">
+                        Nous attendons des participants à cet événement qu’ils respectent ces règles dans le lieu de
+                        l’événement, sur les réseaux sociaux et, plus largement, dans leur comportement lié à BSides Réunion.
+                    </p>
+                </section>
+
+                <!-- 2. Signalement d’un comportement inapproprié -->
+                <section>
+                    <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">2. Signalement d’un comportement inapproprié</h2>
+
+                    <p class="mb-4 text-justify">
+                        Si vous constatez qu’une personne ne respecte pas ces règles, merci de le signaler immédiatement
+                        à un·e organisateur·rice BSides, qui prendra les mesures appropriées.
+                    </p>
+
+                    <p class="mb-4">
+                        Tous les organisateurs et organisatrices BSides sont identifiés par un T-shirt
+                        <strong>&laquo;&nbsp;STAFF&nbsp;&raquo;</strong>.
+                    </p>
+
+                    <p class="mb-4 text-justify">
+                        Vous pouvez également rédiger un signalement détaillé à destination de l’équipe organisatrice
+                        de BSides Réunion, en indiquant notamment :
+                    </p>
+
+                    <ul class="list-disc list-inside space-y-1 mb-4">
+                        <li>Objet du message&nbsp;: «&nbsp;COC Violation&nbsp;» ;</li>
+                        <li>Vos coordonnées personnelles ;</li>
+                        <li>La date et l’heure de l’incident ;</li>
+                        <li>Une description précise de l’incident ;</li>
+                        <li>Les personnes impliquées ou témoins de l’incident.</li>
+                    </ul>
+
+                    <p class="mb-4 text-justify">
+                        Chaque signalement sera traité de manière strictement confidentielle.
+                    </p>
+
+                    <p class="mb-0">
+                        Adresse e-mail de contact en cas d’incident :
+                        <a href="mailto:contact@bsides-reunion.re"
+                           class="text-bsides-primary hover:underline">contact@bsides-reunion.re</a>
+                    </p>
+                </section>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-bsides-dark text-white p-8 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2026 BSides Réunion. Tous droits réservés.</p>
+            <div class="mt-2 text-sm space-x-4">
+                <a href="legal.html" class="hover:text-bsides-primary transition duration-150">
+                    Mentions Légales
+                </a>
+                <a href="#" class="hover:text-bsides-primary transition duration-150">
+                    Code de Conduite
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JavaScript pour le menu mobile -->
+    <script>
+        // Menu mobile (burger)
+        document.getElementById('menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cacher le menu mobile après un clic sur un lien
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
