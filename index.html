@@ -1,11 +1,329 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>BSides Réunion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSides Réunion - Conférence de Sécurité</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuration des polices et couleurs de base de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bsides-primary': '#FF6B6B', // Un rouge vif pour l'accent
+                        'bsides-dark': '#1F2937', // Un gris foncé pour le texte/fond
+                        'bsides-bg': '#F9FAFB', // Un fond très clair
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Styles personnalisés pour le jeu des couleurs */
+        .section-header {
+            border-left: 5px solid #FF6B6B;
+        }
+        /* Style pour masquer/afficher les détails du programme */
+        .program-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+        .program-detail.open {
+            max-height: 500px; /* Grande valeur pour permettre l'expansion */
+            padding-top: 1rem;
+        }
+    </style>
 </head>
-<body>
-  <h1>Bienvenue sur BSides Réunion</h1>
-  <p>Site en construction</p>
+<body class="bg-bsides-bg text-bsides-dark font-sans antialiased">
+
+    <!-- En-tête (Navbar) -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#accueil" class="text-2xl font-bold text-bsides-primary">BSides Réunion</a>
+            <nav class="hidden md:flex space-x-6 text-bsides-dark font-medium">
+                <a href="#accueil" class="hover:text-bsides-primary transition duration-150">Accueil</a>
+                <a href="#appel-contribution" class="hover:text-bsides-primary transition duration-150">Appel à Contribution</a>
+                <a href="#programme" class="hover:text-bsides-primary transition duration-150">Programme</a>
+                <a href="#ctf" class="hover:text-bsides-primary transition duration-150">CTF</a>
+                <a href="#localisation" class="hover:text-bsides-primary transition duration-150">Localisation</a>
+                <a href="#mentions-legales" class="hover:text-bsides-primary transition duration-150">Mentions Légales</a>
+            </nav>
+            <!-- Menu burger pour mobile -->
+            <button id="menu-button" class="md:hidden p-2 rounded-lg text-bsides-dark hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Menu mobile déroulant -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-100">
+            <nav class="flex flex-col space-y-2 p-4 text-bsides-dark font-medium">
+                <a href="#accueil" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Accueil</a>
+                <a href="#appel-contribution" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Appel à Contribution</a>
+                <a href="#programme" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Programme</a>
+                <a href="#ctf" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">CTF</a>
+                <a href="#localisation" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Localisation</a>
+                <a href="#mentions-legales" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Mentions Légales</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Section 1: Accueil & Introduction -->
+        <section id="accueil" class="mb-16 pt-8">
+            <div class="bg-bsidesprimary bg-bsides-primary p-8 md:p-12 rounded-xl text-white shadow-xl mb-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">BSides Réunion 2024</h1>
+                <p class="text-xl md:text-2xl font-light">Le rendez-vous incontournable de la cybersécurité à l'Île de la Réunion.</p>
+                <p class="mt-4 text-lg font-medium">Date : <span class="font-bold">29-30 Février 2024</span> | Lieu : <span class="font-bold">Saint-Denis, La Réunion</span></p>
+                <a href="#" class="mt-6 inline-block bg-bsides-dark text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
+                    Acheter votre billet
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Présentation générale -->
+                <div class="space-y-4">
+                    <h2 class="text-3xl font-bold border-l-4 pl-4 border-bsides-primary">Qu'est-ce que BSides ?</h2>
+                    <p class="text-lg">BSides est une série de conférences décontractées et communautaires sur la cybersécurité. Né de la volonté de fournir un espace pour les sujets non abordés dans les grandes conférences, BSides Réunion est une opportunité unique d'échanger des connaissances, de réseauter et de participer à des activités passionnantes sur l'île.</p>
+                    <p class="text-lg">Notre objectif est de rassembler professionnels, étudiants et passionnés autour de thématiques variées : ethical hacking, défense, développement sécurisé, et bien plus.</p>
+                </div>
+
+                <!-- Keynote Speakers -->
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold border-l-4 pl-4 border-bsides-primary">Keynote Speakers</h2>
+
+                    <!-- Speaker 1 -->
+                    <div class="flex items-start bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <!-- Image Placeholder (utiliser un fond coloré) -->
+                        <div class="w-20 h-20 bg-gray-500 rounded-full flex-shrink-0 mr-4 flex items-center justify-center text-white text-xl font-bold">
+                            <!-- Placeholder image: https://placehold.co/80x80/9CA3AF/FFFFFF?text=A.D -->
+                            <img src="https://placehold.co/80x80/9CA3AF/FFFFFF?text=A.D" alt="Avatar d'Alice Dupont" class="rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/80x80/9CA3AF/FFFFFF?text=A.D';" />
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-bsides-primary">Alice Dupont</h3>
+                            <p class="text-sm text-gray-600 mb-2">Architecte Sécurité, CyberTech Solutions</p>
+                            <p class="text-sm">Conférence : "Sécurisation des infrastructures cloud post-quantiques."</p>
+                        </div>
+                    </div>
+
+                    <!-- Speaker 2 -->
+                    <div class="flex items-start bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <!-- Image Placeholder (utiliser un fond coloré) -->
+                        <div class="w-20 h-20 bg-gray-500 rounded-full flex-shrink-0 mr-4 flex items-center justify-center text-white text-xl font-bold">
+                            <!-- Placeholder image: https://placehold.co/80x80/6B7280/FFFFFF?text=B.M -->
+                            <img src="https://placehold.co/80x80/6B7280/FFFFFF?text=B.M" alt="Avatar de Bruno Mallet" class="rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/80x80/6B7280/FFFFFF?text=B.M';" />
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-bsides-primary">Bruno Mallet</h3>
+                            <p class="text-sm text-gray-600 mb-2">Chercheur en Forensique Numérique</p>
+                            <p class="text-sm">Conférence : "Analyse des traces d'attaques sophistiquées sur IOT."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Appel à Contribution (CFP) -->
+        <section id="appel-contribution" class="py-12 border-t border-gray-200">
+            <h2 class="text-4xl font-extrabold section-header pl-4 mb-8">Appel à Contribution</h2>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-4">
+                <p class="text-lg">Nous recherchons des présentations, ateliers (workshops) et démos pour notre édition 2024. Que vous soyez un expert reconnu ou que vous débutiez, partagez votre passion et vos découvertes avec la communauté BSides Réunion !</p>
+
+                <ul class="list-disc pl-5 space-y-2 text-bsides-dark">
+                    <li><span class="font-semibold">Thèmes privilégiés :</span> Cloud Security, IoT, Rétro-ingénierie, Pentesting (web/mobile), Blue Team & Défense, Vulnérabilités Zero-Day.</li>
+                    <li><span class="font-semibold">Format :</span> Conférence de 45 minutes (incluant Q&A) ou Atelier de 2 heures.</li>
+                    <li><span class="font-semibold">Date limite de soumission :</span> 31 Décembre 2023.</li>
+                </ul>
+
+                <a href="#" class="inline-block bg-bsides-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-pink-600 transition duration-300">
+                    Soumettre une proposition
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 3: Programme (avec interactivité simple) -->
+        <section id="programme" class="py-12 border-t border-gray-200">
+            <h2 class="text-4xl font-extrabold section-header pl-4 mb-8">Programme Provisoire</h2>
+
+            <div id="programme-list" class="space-y-4">
+
+                <!-- Jour 1 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <button class="w-full text-left p-4 flex justify-between items-center font-bold text-xl text-bsides-dark hover:bg-gray-50 transition duration-150 rounded-t-lg focus:outline-none" onclick="toggleProgram(this)">
+                        <span>Jour 1 - Samedi 29 Février</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="program-detail border-t border-gray-100">
+                        <ul class="divide-y divide-gray-100 p-4 md:p-6">
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">08:00 - 09:00</span>
+                                <span class="w-3/4">Accueil et Café</span>
+                            </li>
+                            <li class="flex justify-between py-3 bg-bsides-bg rounded-md p-2 -mx-2">
+                                <span class="font-medium w-1/4">09:00 - 10:00</span>
+                                <span class="w-3/4 font-semibold text-bsides-primary">Keynote: Alice Dupont</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">10:00 - 10:45</span>
+                                <span class="w-3/4">Conférence : Les 10 commandements du DevSecOps</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">12:00 - 13:30</span>
+                                <span class="w-3/4 font-semibold text-green-600">Déjeuner & Networking</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">13:30 - 17:00</span>
+                                <span class="w-3/4">CTF (Capture The Flag) - Début</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Jour 2 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <button class="w-full text-left p-4 flex justify-between items-center font-bold text-xl text-bsides-dark hover:bg-gray-50 transition duration-150 rounded-t-lg focus:outline-none" onclick="toggleProgram(this)">
+                        <span>Jour 2 - Dimanche 30 Février</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="program-detail border-t border-gray-100">
+                        <ul class="divide-y divide-gray-100 p-4 md:p-6">
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">09:00 - 09:45</span>
+                                <span class="w-3/4">Atelier : Hacking d'API RESTful</span>
+                            </li>
+                            <li class="flex justify-between py-3 bg-bsides-bg rounded-md p-2 -mx-2">
+                                <span class="font-medium w-1/4">10:00 - 11:00</span>
+                                <span class="w-3/4 font-semibold text-bsides-primary">Keynote: Bruno Mallet</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">14:00 - 16:00</span>
+                                <span class="w-3/4 font-semibold text-blue-600">Finale CTF & Remise des Prix</span>
+                            </li>
+                            <li class="flex justify-between py-3">
+                                <span class="font-medium w-1/4">16:00 - 17:00</span>
+                                <span class="w-3/4">Clôture et Cocktail</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: CTF (Capture The Flag) -->
+        <section id="ctf" class="py-12 border-t border-gray-200">
+            <h2 class="text-4xl font-extrabold section-header pl-4 mb-8">Capture The Flag (CTF)</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 bg-white p-8 rounded-xl shadow-lg">
+                <div class="md:col-span-2 space-y-4">
+                    <p class="text-lg">Préparez-vous pour le défi ultime ! Notre CTF est une compétition amicale qui mettra à l'épreuve vos compétences en exploitation de vulnérabilités, cryptographie, forensique et plus encore.</p>
+                    <p class="text-lg font-semibold text-bsides-primary">Début : Samedi 29 Février, 13:30 | Fin : Dimanche 30 Février, 16:00</p>
+
+                    <h3 class="text-2xl font-bold mt-6">Règles et Format</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-bsides-dark">
+                        <li>Format de style Jeopardy : défis classés par catégorie et difficulté.</li>
+                        <li>Inscription en équipe (jusqu'à 4 personnes) ou en solo.</li>
+                        <li>Des prix incroyables pour les trois premières équipes !</li>
+                    </ul>
+                </div>
+                <!-- Image d'illustration CTF -->
+                <div class="md:col-span-1 flex justify-center items-center">
+                    <!-- Placeholder image: https://placehold.co/300x200/FF6B6B/FFFFFF?text=CTF+Challenge -->
+                    <img src="https://placehold.co/300x200/FF6B6B/FFFFFF?text=CTF+Challenge" alt="Illustration de défi Capture The Flag" class="rounded-lg shadow-xl w-full" onerror="this.onerror=null;this.src='https://placehold.co/300x200/FF6B6B/FFFFFF?text=CTF+Challenge';" />
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Section 5: Localisation -->
+        <section id="localisation" class="py-12 border-t border-gray-200">
+            <h2 class="text-4xl font-extrabold section-header pl-4 mb-8">Localisation</h2>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-4">
+                <p class="text-lg font-semibold">Lieu : Auditorium du Cyber Pôle de l'Océan Indien (CPOI)</p>
+                <p class="text-lg">Adresse : 12 Rue des Innovateurs, 97490 Saint-Denis, La Réunion.</p>
+
+                <!-- Carte Google Maps Placeholder -->
+                <div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center border-2 border-gray-300">
+                    <p class="text-gray-600 font-bold">Emplacement de la carte (Placeholder)</p>
+                    <p class="text-sm text-gray-500 mt-1">Intégrez ici une iframe Google Maps pour la carte interactive.</p>
+                </div>
+
+                <h3 class="text-2xl font-bold mt-6">Accès</h3>
+                <ul class="list-disc pl-5 space-y-2 text-bsides-dark">
+                    <li><span class="font-semibold">Bus :</span> Ligne Z - Arrêt "Technopole".</li>
+                    <li><span class="font-semibold">Voiture :</span> Parking gratuit disponible sur place.</li>
+                    <li><span class="font-semibold">Depuis l'Aéroport :</span> Environ 15 minutes en taxi ou voiture.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 6: Mentions Légales -->
+        <section id="mentions-legales" class="py-12 border-t border-gray-200">
+            <h2 class="text-4xl font-extrabold section-header pl-4 mb-8">Mentions Légales</h2>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg text-sm space-y-4">
+                <h3 class="text-lg font-bold">1. Éditeur du Site</h3>
+                <p>Nom de l'Association : BSides Réunion (Association Loi 1901)</p>
+                <p>Siège Social : [Adresse complète du siège]</p>
+                <p>Contact : contact@bsidesreunion.org</p>
+
+                <h3 class="text-lg font-bold pt-4">2. Hébergement</h3>
+                <p>Hébergeur : [Nom de l'Hébergeur]</p>
+                <p>Adresse : [Adresse de l'Hébergeur]</p>
+
+                <h3 class="text-lg font-bold pt-4">3. Propriété Intellectuelle</h3>
+                <p>L'ensemble du contenu de ce site (textes, images, vidéos, etc.) est la propriété exclusive de l'association BSides Réunion ou de ses contributeurs, sauf mention contraire. Toute reproduction, même partielle, sans autorisation expresse est interdite.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-bsides-dark text-white p-8 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 BSides Réunion. Tous droits réservés.</p>
+            <div class="mt-2 text-sm space-x-4">
+                <a href="#mentions-legales" class="hover:text-bsides-primary transition duration-150">Mentions Légales</a>
+                <a href="#" class="hover:text-bsides-primary transition duration-150">Code de Conduite</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JavaScript pour le menu mobile et l'interactivité du programme -->
+    <script>
+        // 1. Gestion du menu mobile (Burger)
+        document.getElementById('menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 2. Fonction pour déplier/replier les détails du programme
+        function toggleProgram(button) {
+            // Trouver le parent (div.bg-white)
+            const parent = button.closest('.bg-white');
+            // Trouver la zone de détail (div.program-detail)
+            const detail = parent.querySelector('.program-detail');
+            // Trouver l'icône (svg)
+            const icon = button.querySelector('svg');
+
+            // Basculer la classe 'open' sur le détail
+            detail.classList.toggle('open');
+            // Basculer la rotation de l'icône (pour pointer vers le haut ou le bas)
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Cacher le menu mobile après un clic sur un lien (pour un meilleur UX)
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
