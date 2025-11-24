@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSides Réunion - Devenir Bénévole</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bsides-primary': '#E76020', // Orange du logo
+                        'bsides-title': '#a3b7ca',
+                        'bsides-dark': '#1F2937',    // Gris foncé
+                        'bsides-bg': '#F9FAFB',      // Fond clair
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .section-header {
+            border-left: 5px solid #E76020;
+        }
+    </style>
+</head>
+<body class="bg-bsides-bg text-bsides-dark font-sans antialiased">
+
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center space-x-2">
+                <img src="../img/logo.png" alt="Logo BSides Réunion" class="h-8 md:h-10">
+                <span class="text-2xl font-bold text-bsides-dark hidden md:inline"></span>
+            </a>
+            <nav class="hidden md:flex space-x-6 text-bsides-dark font-medium">
+                <a href="../index.html" class="hover:text-bsides-primary transition duration-150">Accueil</a>
+                <a href="sponsors.html" class="hover:text-bsides-primary transition duration-150">Sponsors</a>
+            </nav>
+            <button id="menu-button" class="md:hidden p-2 rounded-lg text-bsides-dark hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-100">
+            <nav class="flex flex-col space-y-2 p-4 text-bsides-dark font-medium">
+                <a href="../index.html" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Accueil</a>
+                <a href="sponsors.html" class="p-2 hover:bg-bsides-bg rounded-md transition duration-150">Sponsors</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <section id="benevoles-intro" class="py-8 border-t border-gray-200">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Rejoignez l'équipe !</h1>
+            <p class="text-lg md:text-xl text-justify max-w-3xl">
+                BSides Réunion est un événement organisé <strong>par la communauté, pour la communauté</strong>. 
+                Son succès repose sur l'énergie et l'implication de ses bénévoles.
+                Vous souhaitez vivre la conférence de l'intérieur, rencontrer les speakers et aider à faire de cet événement un moment inoubliable ? 
+                Rejoignez-nous !
+            </p>
+        </section>
+
+        <section class="py-8">
+            <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">Les missions des bénévoles</h2>
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="bg-white p-6 rounded-xl shadow-lg space-y-3">
+                    <h3 class="text-xl font-bold text-bsides-primary">Accueil & Orientation</h3>
+                    <p class="text-justify text-sm">
+                        Accueillir les participants, distribuer les badges et les goodies, et orienter les visiteurs vers les différentes salles de conférence. Vous êtes le premier sourire de l'événement !
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg space-y-3">
+                    <h3 class="text-xl font-bold text-bsides-primary">Logistique & Installation</h3>
+                    <p class="text-justify text-sm">
+                        Aider à la mise en place des salles, installer la signalétique, gérer le catering (pauses café/déjeuner) et s'assurer que tout est rangé proprement à la fin.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg space-y-3">
+                    <h3 class="text-xl font-bold text-bsides-primary">Modération de salle</h3>
+                    <p class="text-justify text-sm">
+                        Assister les speakers (micro, eau), s'assurer du respect du timing (time-keeping) et faire circuler le micro dans le public lors des sessions de questions-réponses.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-8">
+            <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">Pourquoi participer ?</h2>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <ul class="list-disc list-inside space-y-2 text-lg">
+                    <li>Accès gratuit à l'événement (en dehors de vos créneaux de bénévolat).</li>
+                    <li>Un <strong>T-shirt exclusif</strong> "Staff / Bénévole".</li>
+                    <li>Repas et boissons fournis durant l'événement.</li>
+                    <li>Une opportunité unique de réseauter avec les organisateurs et les speakers.</li>
+                    <li>La satisfaction de contribuer à l'essor de la cybersécurité à La Réunion.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="py-8">
+            <h2 class="text-3xl font-extrabold section-header pl-4 mb-4">Je veux aider !</h2>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg space-y-4 max-w-2xl border-l-4 border-bsides-primary">
+                <p class="text-justify text-lg font-medium">
+                    La motivation est votre seule compétence requise !
+                </p>
+                <p class="text-justify">
+                    Pour proposer votre aide, envoyez-nous simplement un email en nous indiquant vos disponibilités (journée entière, demi-journée) et si vous avez une préférence pour certaines tâches.
+                </p>
+                
+                <div class="mt-6">
+                    <p class="mb-2">Écrivez-nous à :</p>
+                    <a href="mailto:contact@bsides-reunion.re?subject=Candidature%20Bénévole%20BSides"
+                       class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-bsides-primary hover:bg-orange-700 transition duration-150 shadow-md">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        contact@bsides-reunion.re
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500 mt-2">
+                    Objet recommandé : <em>[Bénévole] Candidature - Prénom Nom</em>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-bsides-dark text-white p-8 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2026 BSides Réunion. Tous droits réservés.</p>
+            <div class="mt-3 text-sm space-x-4">
+                <a href="legal.html" class="hover:text-bsides-primary transition duration-150">
+                    Mentions Légales
+                </a>
+                <a href="code.html" class="hover:text-bsides-primary transition duration-150">
+                    Code de Conduite
+                </a>
+                <span class="text-bsides-primary font-bold">Devenir bénévole</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion du menu mobile (Burger)
+        document.getElementById('menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cacher le menu mobile après un clic sur un lien
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
