@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Le coffre, un jeu · BSides Réunion</title>
+  <meta name="description" content="Un petit jeu BSides Réunion : craquez le code du coffre en dix essais pour récupérer un flag.">
+  <link rel="canonical" href="https://bsides-reunion.re/jeu.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BSides Réunion">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Le coffre, un jeu · BSides Réunion">
+  <meta property="og:description" content="Un petit jeu BSides Réunion : craquez le code du coffre en dix essais pour récupérer un flag.">
+  <meta property="og:url" content="https://bsides-reunion.re/jeu.html">
+  <meta property="og:image" content="https://bsides-reunion.re/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BSides Réunion">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Le coffre, un jeu · BSides Réunion">
+  <meta name="twitter:description" content="Un petit jeu BSides Réunion : craquez le code du coffre en dix essais pour récupérer un flag.">
+  <meta name="twitter:image" content="https://bsides-reunion.re/img/og.png">
+  <meta name="twitter:image:alt" content="BSides Réunion">
+  <meta name="theme-color" content="#070606">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="./logos/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="./logos/apple-touch-icon.png" sizes="180x180">
+  <link rel="preload" href="./fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/game.css">
+</head>
+<body class="game-page">
+  <a class="skip" href="#vault">Aller au jeu</a>
+
+  <header class="top is-scrolled" id="top">
+    <div class="wrap top-in">
+      <a class="brand" href="./index.html" aria-label="BSides La Réunion, retour au site">
+        <img src="./logos/bsides-blanc.png" width="480" height="207" alt="BSides La Réunion">
+      </a>
+      <a class="btn btn-line btn-sm top-back" href="./index.html"><span class="bi"><span class="arr" aria-hidden="true">←</span> Retour au site</span></a>
+    </div>
+  </header>
+
+  <main class="game-main wrap">
+    <section class="game-intro">
+      <p class="eyebrow">Pause · Jeu</p>
+      <h1>Le <span class="hl">coffre</span></h1>
+      <p>Quelqu’un a oublié de changer le code par défaut. Quatre symboles parmi six, dix essais. Chaque essai vous dit combien de symboles sont bien placés et combien sont justes mais mal placés. À vous de déduire le reste.</p>
+      <ul class="legend" aria-label="Lecture des indices">
+        <li><i class="peg hit" aria-hidden="true"></i> Bon symbole, bonne place</li>
+        <li><i class="peg near" aria-hidden="true"></i> Bon symbole, mauvaise place</li>
+      </ul>
+      <p class="fine">Clavier : A à F (ou 1 à 6), Retour arrière pour effacer, Entrée pour valider.</p>
+    </section>
+
+    <section class="vault" id="vault" aria-label="Zone de jeu">
+      <div class="vault-top">
+        <p><small>Essai</small><b><span id="h-try">1</span> / 10</b></p>
+        <p><small>Coffres ouverts</small><b id="h-wins">0</b></p>
+        <p><small>Record</small><b id="h-best">–</b></p>
+      </div>
+
+      <div class="board" id="board" role="group" aria-label="Historique des essais"></div>
+
+      <div class="pad" id="pad" role="group" aria-label="Symboles"></div>
+      <div class="pad-actions">
+        <button class="btn btn-line btn-sm" id="b-del" type="button"><span class="bi">Effacer</span></button>
+        <button class="btn btn-primary btn-sm" id="b-ok" type="button" disabled><span class="bi">Valider</span></button>
+      </div>
+
+      <p class="status" id="status" role="status" aria-live="polite">Saisissez quatre symboles.</p>
+
+      <div class="flag-box" id="flag-box" hidden>
+        <div>
+          <small>Coffre ouvert</small>
+          <code id="flag-code"></code>
+        </div>
+        <button class="btn btn-primary btn-sm" id="flag-copy" type="button"><span class="bi">Copier</span></button>
+      </div>
+
+      <div class="vault-foot">
+        <button class="btn btn-line btn-sm" id="b-new" type="button"><span class="bi">Nouveau coffre</span></button>
+        <button class="mute" type="button" id="mute" aria-pressed="false">Son activé</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <a class="brand brand-foot" href="./index.html" aria-label="BSides La Réunion, retour au site">
+          <img src="./logos/bsides-blanc.png" width="480" height="207" alt="BSides La Réunion">
+        </a>
+        <p class="foot-tag">La cybersécurité a aussi son île.</p>
+        <a class="foot-mail" href="mailto:contact@bsides-reunion.re">contact@bsides-reunion.re</a>
+        <ul class="socials">
+          <li><a href="https://www.instagram.com/bsidesreunion/" target="_blank" rel="noopener" aria-label="Instagram de BSides Réunion"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></li>
+          <li><a href="https://discord.gg/W29jZfNpn" target="_blank" rel="noopener" aria-label="Discord de BSides Réunion"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M20.3 4.4a19.8 19.8 0 0 0-4.9-1.5l-.1 0c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0c-.2-.4-.5-.9-.6-1.3a.1.1 0 0 0-.1 0A19.7 19.7 0 0 0 3.6 4.4a.1.1 0 0 0 0 0C.5 9 0 13.6.1 18.1a.1.1 0 0 0 .1.1 19.9 19.9 0 0 0 6 3 .1.1 0 0 0 .1 0c.5-.6.9-1.3 1.2-2a.1.1 0 0 0 0-.1 13 13 0 0 1-1.9-.9.1.1 0 0 1 0-.2l.4-.3a.1.1 0 0 1 .1 0c3.9 1.8 8.2 1.8 12 0a.1.1 0 0 1 .1 0l.4.3a.1.1 0 0 1 0 .2 12.3 12.3 0 0 1-1.9.9.1.1 0 0 0 0 .1c.4.7.8 1.4 1.2 2a.1.1 0 0 0 .1 0 19.8 19.8 0 0 0 6-3 .1.1 0 0 0 .1-.1c.5-5.2-.8-9.7-3.5-13.7a.1.1 0 0 0 0 0zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.7 10.4 8 10.4s2.2 1.1 2.2 2.5-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.5 2.2-2.5 2.2 1.1 2.2 2.5-1 2.4-2.2 2.4z"/></svg></a></li>
+        </ul>
+      </div>
+      <nav class="foot-col" aria-label="Le site">
+        <p class="foot-h">Le site</p>
+        <ul>
+          <li><a href="./index.html#cybertour">CyberTour · 23 octobre 2026</a></li>
+          <li><a href="./index.html#ctf">Les CTF</a></li>
+          <li><a href="./index.html#infos">BSides 2027 · 9 mars</a></li>
+          <li><a href="https://ctf.inge.re" target="_blank" rel="noopener">ctf.inge.re <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Informations">
+        <p class="foot-h">Informations</p>
+        <ul>
+          <li><a href="./code-de-conduite.html">Code de conduite</a></li>
+          <li><a href="./appel-a-contributions.html">Proposer une intervention</a></li>
+          <li><a href="./benevoles.html">Devenir bénévole</a></li>
+          <li><a href="./partenaires.html">Devenir partenaire</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap foot-bottom">
+      <p>© <span id="year">2026</span> Association BSides Réunion</p>
+      <p class="foot-legal"><a href="./mentions-legales.html">Mentions légales</a><a href="./confidentialite.html">Confidentialité</a><a href="./cookies.html">Cookies</a></p>
+      <p>Fait à La Réunion</p>
+    </div>
+  </footer>
+
+  <script src="./js/game.js" defer></script>
+</body>
+</html>

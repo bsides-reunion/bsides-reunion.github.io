@@ -1,0 +1,68 @@
+/* Page « Le coffre » : même langage que l'accueil (aplats, filets, parallélogrammes, ombres dures). */
+.game-page { min-height: 100vh; background: var(--bg); background-image: url("../img/art/hero.svg"); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+.game-page::before { content: ""; position: fixed; inset: 0; z-index: -1; background: rgba(7, 6, 6, .86); }
+.top-back { display: inline-flex; align-self: center; }
+
+.game-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 470px); gap: clamp(32px, 6vw, 96px); align-items: start; padding-block: clamp(36px, 6vw, 84px) 96px; }
+.game-intro { position: sticky; top: calc(var(--header-h) + 28px); display: grid; gap: 22px; }
+.game-intro .eyebrow { margin-bottom: 0; }
+.game-intro h1 { font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: .98; letter-spacing: -.03em; }
+.game-intro h1 .hl { color: var(--or); }
+.game-intro > p:not(.eyebrow):not(.fine) { color: var(--muted); font-size: 1.08rem; max-width: 46ch; }
+.game-intro .fine { margin-top: 0; }
+.legend { display: grid; gap: 10px; color: var(--muted); font-size: .96rem; }
+.legend li { display: flex; align-items: center; gap: 12px; }
+
+/* pions d'indice */
+.peg { display: block; width: 12px; height: 12px; border: 2px solid var(--line-2); box-sizing: border-box; transform: skewX(var(--skew)); }
+.peg.hit { background: var(--or); border-color: var(--or); }
+.peg.near { background: transparent; border-color: var(--vi-l); }
+
+/* coffre */
+.vault { position: relative; display: grid; gap: 16px; width: 100%; padding: 22px; background: var(--panel); border: 1px solid var(--line-2); border-top: 5px solid var(--or); box-shadow: 12px 12px 0 rgba(124, 92, 255, .32); transition: border-color .3s, box-shadow .3s; }
+.vault.open { border-top-color: #5be39a; box-shadow: 12px 12px 0 rgba(91, 227, 154, .28); }
+.vault.locked { border-top-color: #ff5a5a; box-shadow: 12px 12px 0 rgba(255, 90, 90, .25); }
+.vault-top { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }
+.vault-top p { display: grid; gap: 2px; padding: 10px 14px; }
+.vault-top p + p { border-left: 1px solid var(--line); }
+.vault-top small { font: 600 .62rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+.vault-top b { font: 900 1.3rem/1.15 var(--head); font-variant-numeric: tabular-nums; }
+
+.board { display: grid; gap: 6px; }
+.row { display: grid; grid-template-columns: 1.8rem 1fr auto; align-items: center; gap: 12px; padding: 5px 10px; border: 1px solid transparent; transition: background-color .2s, border-color .2s; }
+.row.active { background: rgba(255, 90, 31, .07); border-color: rgba(255, 90, 31, .5); }
+.row .n { font: 400 .7rem/1 var(--mono); color: var(--soft); }
+.cells { display: flex; gap: 8px; }
+.cell { display: grid; place-items: center; width: clamp(40px, 11vw, 48px); aspect-ratio: 1; border: 1px dashed var(--line-2); font: 600 1.05rem/1 var(--mono); color: var(--soft); }
+.cell.filled { border-style: solid; color: #fff; background: color-mix(in srgb, var(--mark, #fff) 18%, var(--panel)); border-color: var(--mark, #fff); box-shadow: inset 0 -4px 0 var(--mark, #fff); }
+.fb { display: grid; grid-template-columns: repeat(2, 12px); gap: 6px; }
+
+/* six symboles : la lettre reste le repère, la couleur aide */
+.s-A { --mark: #ff5a1f; }
+.s-B { --mark: #9b82ff; }
+.s-C { --mark: #FFC48A; }
+.s-D { --mark: #5fc4e8; }
+.s-E { --mark: #ff6b8b; }
+.s-F { --mark: #8fe0a8; }
+
+.pad { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.sym { aspect-ratio: 1; min-height: 46px; border: 1px solid var(--line-2); background: var(--panel-2); font: 600 1.1rem/1 var(--mono); color: #fff; cursor: pointer; box-shadow: inset 0 -4px 0 var(--mark, #fff); transition: transform .12s, background-color .12s; }
+.sym:hover { background: color-mix(in srgb, var(--mark, #fff) 22%, var(--panel-2)); }
+.sym:active { transform: translateY(2px); }
+.pad-actions { display: flex; gap: 18px; justify-content: flex-end; padding-right: 6px; }
+.status { min-height: 3em; color: var(--muted); font: 400 .86rem/1.55 var(--mono); }
+
+.flag-box { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 18px; border: 1.5px dashed #5be39a; background: rgba(91, 227, 154, .06); }
+.flag-box[hidden] { display: none; }
+.flag-box small { display: block; font: 600 .64rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #8fe0a8; margin-bottom: 6px; }
+.flag-box code { font: 600 clamp(.82rem, 3vw, 1rem)/1.4 var(--mono); color: #fff; word-break: break-all; }
+.vault-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-right: 6px; }
+.mute { background: none; border: 0; border-bottom: 1px solid var(--line-2); padding: 2px 0; font: 400 .78rem/1.4 var(--mono); color: var(--soft); cursor: pointer; }
+.mute:hover { color: #fff; border-color: #fff; }
+
+@media (max-width: 900px) {
+  .game-main { grid-template-columns: minmax(0, 1fr); }
+  .game-intro { position: static; }
+  .vault { box-shadow: 8px 8px 0 rgba(124, 92, 255, .32); }
+}
+@media (max-width: 420px) { .vault { padding: 16px 12px; } .row { gap: 8px; padding: 4px 6px; } }

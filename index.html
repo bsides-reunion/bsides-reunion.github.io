@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr" data-ctf="before">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BSides Réunion · CTF du CyberTour (23 octobre 2026) et BSides 2027</title>
+  <meta name="description" content="BSides Réunion organise les CTF du CyberTour le 23 octobre 2026 à Saint-Pierre. Prochaine conférence : le 9 mars 2027 à l’ESIROI.">
+  <link rel="canonical" href="https://bsides-reunion.re/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#070606">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BSides Réunion">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="BSides Réunion — CTF du CyberTour (23 octobre 2026) et BSides 2027">
+  <meta property="og:description" content="BSides Réunion organise les CTF du CyberTour le 23 octobre 2026 à Saint-Pierre. Prochaine conférence : le 9 mars 2027 à l’ESIROI.">
+  <meta property="og:url" content="https://bsides-reunion.re/">
+  <meta property="og:image" content="https://bsides-reunion.re/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BSides Réunion : les CTF du CyberTour La Réunion, le 23 octobre 2026">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BSides Réunion — CTF du CyberTour et conférence 2027">
+  <meta name="twitter:description" content="CTF du CyberTour le 23 octobre 2026 à Saint-Pierre. BSides Réunion 2027 le 9 mars à l’ESIROI.">
+  <meta name="twitter:image" content="https://bsides-reunion.re/img/og.png">
+  <meta name="twitter:image:alt" content="BSides Réunion : les CTF du CyberTour La Réunion, le 23 octobre 2026">
+  <link rel="icon" href="./logos/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="./logos/apple-touch-icon.png" sizes="180x180">
+  <link rel="preload" href="./fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/archivo-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./logos/bsides-blanc.png" as="image">
+  <script>
+    /* État du CTF selon la date de La Réunion (UTC+4), posé avant le premier rendu. */
+    (function () {
+      var d = document.documentElement, t = Math.floor((Date.now() + 144e5) / 864e5), e = Math.floor(Date.UTC(2026, 9, 23) / 864e5);
+      d.classList.add('js');
+      d.setAttribute('data-ctf', t < e ? 'before' : t === e ? 'on' : 'after');
+      /* Intro volcanique une seule fois par session (onglet), sauf si mouvement réduit. */
+      try {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('bs-intro')) {
+          d.classList.add('is-booting');
+          sessionStorage.setItem('bs-intro', '1');
+        }
+      } catch (err) { d.classList.add('is-booting'); }
+      if (!d.classList.contains('is-booting')) d.classList.add('booted');
+      /* Sans ancre dans l’URL, on reste en haut. Le navigateur restaure sinon
+         le focus ou le défilement sur la section « À la une ». */
+      var homeTop = !location.hash || location.hash === '#' || location.hash === '#accueil';
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (err2) {}
+      function releaseInert() {
+        if (!document.body) return;
+        Array.prototype.forEach.call(document.body.children, function (el) { el.inert = false; });
+      }
+      function pinTop() {
+        if (!homeTop) return;
+        var prev = d.style.scrollBehavior;
+        d.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        d.style.scrollBehavior = prev;
+      }
+      if (homeTop) {
+        var armed = true;
+        var guard = function () {
+          if (!armed) return;
+          if (window.scrollY > 0 || d.scrollTop > 0) pinTop();
+        };
+        var disarm = function () { armed = false; };
+        var intent = function () { if (!d.classList.contains('is-booting')) disarm(); };
+        addEventListener('scroll', guard, { passive: true });
+        addEventListener('wheel', intent, { passive: true });
+        addEventListener('touchstart', intent, { passive: true });
+        addEventListener('keydown', intent);
+        addEventListener('pointerdown', function (ev) {
+          var t = ev.target;
+          if (t && t.closest && t.closest('#boot')) return;
+          intent();
+        });
+        addEventListener('hashchange', function () {
+          if (location.hash && location.hash !== '#' && location.hash !== '#accueil') disarm();
+        });
+        addEventListener('pageshow', pinTop);
+        addEventListener('bs-boot-settled', function () { pinTop(); setTimeout(disarm, 800); });
+        setTimeout(disarm, 8000);
+        pinTop();
+      }
+      /* Filet de sécurité : ne jamais bloquer la page si home.js ne s'exécute pas. */
+      setTimeout(function () {
+        if (d.classList.contains('is-booting')) {
+          d.classList.add('booted');
+          d.classList.remove('is-booting');
+          var b = document.getElementById('boot');
+          if (b) b.remove();
+          releaseInert();
+          if (homeTop) pinTop();
+          window.dispatchEvent(new Event('bs-boot-settled'));
+        }
+      }, 7000);
+    })();
+  </script>
+  <link rel="stylesheet" href="./css/home.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://bsides-reunion.re/#association",
+        "name": "Association BSides Réunion",
+        "alternateName": "BSides Réunion",
+        "url": "https://bsides-reunion.re/",
+        "logo": "https://bsides-reunion.re/logos/bsides-noir.png",
+        "email": "contact@bsides-reunion.re",
+        "sameAs": ["https://www.instagram.com/bsidesreunion/", "https://discord.gg/W29jZfNpn"],
+        "areaServed": "La Réunion"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bsides-reunion.re/#site",
+        "name": "BSides Réunion",
+        "url": "https://bsides-reunion.re/",
+        "inLanguage": "fr",
+        "publisher": { "@id": "https://bsides-reunion.re/#association" }
+      },
+      {
+        "@type": "Event",
+        "name": "CTF du CyberTour La Réunion 2026",
+        "startDate": "2026-10-23T09:00:00+04:00",
+        "endDate": "2026-10-23T16:00:00+04:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "image": "https://bsides-reunion.re/img/og.png",
+        "inLanguage": "fr",
+        "url": "https://ctf.inge.re/",
+        "location": { "@type": "Place", "name": "Campus de Terre-Sainte", "address": { "@type": "PostalAddress", "streetAddress": "40 avenue de Soweto", "postalCode": "97410", "addressLocality": "Saint-Pierre", "addressRegion": "La Réunion", "addressCountry": "FR" } },
+        "organizer": { "@id": "https://bsides-reunion.re/#association" },
+        "description": "Capture The Flag organisé par BSides Réunion dans le cadre du CyberTour La Réunion 2026."
+      },
+      {
+        "@type": "Event",
+        "name": "BSides Réunion 2027",
+        "startDate": "2027-03-09",
+        "endDate": "2027-03-09",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "image": "https://bsides-reunion.re/img/og.png",
+        "inLanguage": "fr",
+        "url": "https://bsides-reunion.re/",
+        "location": { "@type": "Place", "name": "ESIROI, campus de Terre-Sainte", "address": { "@type": "PostalAddress", "streetAddress": "40 avenue de Soweto", "postalCode": "97410", "addressLocality": "Saint-Pierre", "addressRegion": "La Réunion", "addressCountry": "FR" } },
+        "organizer": { "@id": "https://bsides-reunion.re/#association" },
+        "description": "Conférence communautaire de cybersécurité et Capture The Flag à La Réunion."
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ============ INTRO VOLCANIQUE (une fois par session) ============ -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-heat" aria-hidden="true"></div>
+    <div class="boot-embers" id="boot-embers" aria-hidden="true"></div>
+    <div class="boot-core">
+      <img class="boot-logo" src="./logos/bsides-blanc.png" width="480" height="207" alt="">
+      <p class="boot-year">2027</p>
+      <p class="boot-status"><span class="boot-word">La Fournaise se réveille</span><span class="boot-pct" id="boot-pct">00</span></p>
+      <div class="boot-bar"><i id="boot-bar"></i></div>
+    </div>
+    <div class="boot-crack" aria-hidden="true"></div>
+    <button class="boot-skip" id="boot-skip" type="button">Passer l’intro</button>
+  </div>
+
+  <header class="top" id="top">
+    <div class="top-progress" id="top-progress" aria-hidden="true">
+      <i id="top-progress-fill"></i>
+      <b id="top-progress-drop"></b>
+    </div>
+    <div class="wrap top-in">
+      <a class="brand" href="#accueil" id="brand" aria-label="BSides La Réunion — retour en haut">
+        <img src="./logos/bsides-blanc.png" width="480" height="207" alt="BSides La Réunion">
+      </a>
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#cybertour">CyberTour</a>
+        <a href="#piliers">L’événement</a>
+        <a href="#ctf">CTF</a>
+        <a href="#conferences">Conférences</a>
+        <a href="#bilan">Bilan 2026</a>
+        <a href="#infos">Infos pratiques</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-line btn-sm top-cta" href="https://ctf.inge.re" target="_blank" rel="noopener"><span class="bi">Accéder aux CTF</span></a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="sheet">
+        <span class="menu-ico" aria-hidden="true"></span><span class="sr">Menu</span>
+      </button>
+    </div>
+    <div class="sheet" id="sheet">
+      <a href="#accueil">Accueil</a>
+      <a href="#cybertour">CyberTour</a>
+      <a href="#piliers">L’événement</a>
+      <a href="#ctf">CTF</a>
+      <a href="#conferences">Conférences</a>
+      <a href="#bilan">Bilan 2026</a>
+      <a href="#infos">Infos pratiques</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="https://ctf.inge.re" target="_blank" rel="noopener"><span class="bi">Accéder aux CTF <span class="arr" aria-hidden="true">→</span></span></a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="accueil" aria-labelledby="h1">
+      <div class="slot hero-art" data-photo="hero" data-alt="Coucher de soleil au cap La Houssaye, Saint-Paul" data-parallax="0.06"><img class="art" src="./img/art/hero.svg" width="1600" height="900" alt="" fetchpriority="high"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+
+      <div class="wrap hero-in">
+        <div class="hero-copy">
+          <p class="eyebrow eyebrow-light">Conférences / CTF / Communauté</p>
+          <h1 class="hero-lock" id="h1" aria-label="BSides La Réunion 2027">
+            <img class="hero-logo" src="./logos/bsides-blanc.png" width="480" height="207" alt="BSides La Réunion">
+            <span class="hero-year" aria-hidden="true"><span class="yr">2027</span><span class="yr-meta">9 mars<br>ESIROI · Saint-Pierre</span></span>
+          </h1>
+          <p class="hero-tag">La cybersécurité<br>a aussi son île.</p>
+          <p class="hero-p">Conférences, ateliers et CTF : la cyber par la communauté, pour la communauté. Rendez-vous le <strong>mardi 9 mars 2027</strong> à l’ESIROI de Saint-Pierre.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://ctf.inge.re" target="_blank" rel="noopener" data-show="before on"><span class="bi">Rejoindre l’aventure <span class="arr" aria-hidden="true">→</span></span></a>
+            <a class="btn btn-primary" href="#infos" data-show="after"><span class="bi">Rejoindre l’aventure <span class="arr" aria-hidden="true">→</span></span></a>
+            <a class="btn btn-line" href="#bilan"><span class="bi">Bilan 2026</span></a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <p class="hero-side-label">Prochain rendez-vous</p>
+          <p class="hero-count"><strong id="hero-count">141</strong><span>jours</span></p>
+          <p class="hero-side-date">09.03.2027<br>ESIROI · Saint-Pierre</p>
+          <a class="hero-scroll" href="#cybertour"><span>Défiler</span><i aria-hidden="true"></i></a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ TICKER ============ -->
+    <div class="ticker-wrap" aria-hidden="true">
+      <div class="ticker">
+        <div class="ticker-track">
+          <span>Conférences <b>·</b> CTF <b>·</b> Communauté <b>·</b> La Réunion <b>·</b> 09.03.2027 <b>·</b> ESIROI Saint-Pierre <b>·</b></span>
+          <span>Conférences <b>·</b> CTF <b>·</b> Communauté <b>·</b> La Réunion <b>·</b> 09.03.2027 <b>·</b> ESIROI Saint-Pierre <b>·</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CYBERTOUR (à la une) ============ -->
+    <section class="ct" id="cybertour" data-num="01" aria-labelledby="ct-title">
+      <div class="wrap">
+        <div class="ct-card rv">
+          <div class="ct-brand">
+            <a class="ct-logo" id="ct-logo" href="https://cybertour.re/en/" target="_blank" rel="noopener" aria-label="CyberTour La Réunion (site officiel)">
+              <img src="./logos/cybertour.png" alt="CyberTour La Réunion" width="395" height="256">
+              <span class="ct-fallback" aria-hidden="true">Cyber<strong>Tour</strong><small>La Réunion</small></span>
+            </a>
+            <p class="ct-pill" id="ctf-pill" data-state="before"><span class="dot" aria-hidden="true"></span><span id="ctf-pill-label">À venir</span></p>
+          </div>
+
+          <div class="ct-main">
+            <p class="eyebrow">À la une · CyberTour La Réunion</p>
+            <h2 id="ct-title">
+              <span data-show="before">Vendredi 23 octobre 2026, dans la matinée : les CTF, c’est BSides.</span>
+              <span data-show="on">C’est aujourd’hui : les CTF du CyberTour sont ouverts.</span>
+              <span data-show="after">Merci aux joueuses et aux joueurs du CyberTour.</span>
+            </h2>
+            <p>
+              <span data-show="before on">BSides Réunion sponsorise le CyberTour et prend en charge ses épreuves de Capture The Flag. Les défis se jouent sur <a class="u-link" href="https://ctf.inge.re" target="_blank" rel="noopener">ctf.inge.re</a>, seul ou en équipe.</span>
+              <span data-show="after">BSides Réunion a organisé les épreuves de Capture The Flag du CyberTour le 23 octobre 2026. Prochain rendez-vous : BSides Réunion 2027, le 9 mars 2027.</span>
+            </p>
+            <p class="ct-note">Le CyberTour est organisé dans le cadre du Cybermois d’octobre, par le CLUSIR Réunion Océan Indien et l’Université de La Réunion. <a class="u-link" href="https://cybertour.re/en/" target="_blank" rel="noopener">Programme complet sur cybertour.re<span aria-hidden="true"> ↗</span></a></p>
+          </div>
+
+          <div class="ct-actions">
+            <a class="btn btn-primary" href="https://ctf.inge.re" target="_blank" rel="noopener"><span class="bi">Accéder aux CTF <span class="arr" aria-hidden="true">→</span></span></a>
+            <a class="btn btn-line" href="https://cybertour.re/en/" target="_blank" rel="noopener"><span class="bi">Le CyberTour <span class="arr" aria-hidden="true">↗</span></span></a>
+          </div>
+
+          <ol class="cal" id="cal" aria-label="Prochains rendez-vous">
+            <li data-date="2026-04-02"><time datetime="2026-04-02">2 avril 2026</time><strong>BSides Réunion 2026</strong><span data-tag>Terminé</span></li>
+            <li data-date="2026-10-23"><time datetime="2026-10-23">23 octobre 2026</time><strong>CyberTour · CTF BSides</strong><span data-tag>À venir</span></li>
+            <li data-date="2027-03-09"><time datetime="2027-03-09">9 mars 2027</time><strong>BSides Réunion 2027</strong><span data-tag>À venir</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4 PILIERS ============ -->
+    <div class="lava-rule rv" aria-hidden="true"></div>
+
+    <section class="features" id="piliers" data-num="02" aria-labelledby="piliers-title">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">Qu’est-ce que BSides Réunion ?</p>
+          <h2 id="piliers-title">Plus qu’un événement, une expérience.</h2>
+          <p>BSides est une série de conférences décontractées et communautaires sur la cybersécurité, née pour offrir un espace aux sujets qu’on n’aborde pas dans les grands événements. BSides Réunion en est la version de l’île : une journée pour échanger, se rencontrer et mettre la main à la pâte.</p>
+          <p>L’événement est organisé par l’association BSides Réunion, avec l’aide de bénévoles, selon un <a class="u-link" href="./code-de-conduite.html">code de conduite</a> qui s’applique à toutes et à tous.</p>
+        </header>
+      </div>
+      <div class="wrap feat-grid">
+        <article class="feat rv">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="24" y="5" width="16" height="30" rx="8"/><path d="M28 14h8M28 20h8M28 26h8"/><path d="M14 28a18 18 0 0 0 36 0"/><path d="M32 46v11M21 58h22"/></svg>
+          <h3>Conférences</h3>
+          <p>Des talks inspirants par des expert·es et des passionné·es, du terrain à la pointe de la recherche.</p>
+        </article>
+        <article class="feat rv">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="10" width="44" height="31" rx="3"/><path d="M4 49h56l-3 6H7z"/><path d="M18 20l7 5-7 5M29 31h8"/></svg>
+          <h3>CTF</h3>
+          <p>Relève les défis, teste tes skills, rejoins la compétition. Les épreuves se jouent sur ctf.inge.re.</p>
+        </article>
+        <article class="feat rv">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="20" r="9"/><path d="M14 54c0-12 8-19 18-19s18 7 18 19"/><path d="M16 27a8 8 0 0 1-3-11 8 8 0 0 1 9-3M48 27a8 8 0 0 0 3-11 8 8 0 0 0-9-3"/></svg>
+          <h3>Communauté</h3>
+          <p>Échange, partage, rencontre : une communauté bienveillante, portée par des bénévoles de l’île.</p>
+        </article>
+        <article class="feat rv">
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 52c1-9 1-18-1-26"/><path d="M29 26c-5-7-13-8-19-4M29 26c-1-8-7-14-15-14M29 26c3-8 10-11 18-9M29 26c7-3 14-1 18 5M29 26c3-9 2-16 0-21"/><path d="M4 55c9-10 17-9 25-1M30 54c8-8 17-9 30 1M3 58h58"/></svg>
+          <h3>La Réunion</h3>
+          <p>Un cadre exceptionnel entre montagnes, océan et culture créole.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ À PROPOS (fusionné dans les piliers) ============ -->
+    <figure class="breather" aria-label="La Réunion, océan Indien">
+      <div class="breather-img slot" data-photo="about" data-alt="Cirque de Mafate vu du Maïdo, îlet de Roche Plate" data-parallax="0.04"><img class="art" src="./img/art/cirque.svg" width="800" height="650" alt="" loading="lazy"></div>
+      <figcaption><span class="script">La Réunion</span><span class="cap">Océan Indien · 974</span></figcaption>
+    </figure>
+
+    <!-- ============ CTF ============ -->
+    <div class="lava-rule rv" aria-hidden="true"></div>
+
+    <section class="ctf" id="ctf" data-num="03" aria-labelledby="ctf-title-h">
+      <div class="wrap ctf-grid">
+        <div class="term rv" aria-hidden="true">
+          <div class="term-bar"><i></i><i></i><i></i><span>ctf.inge.re</span></div>
+<pre><span class="d">$</span> ouvrir https://ctf.inge.re
+<span class="o">&gt;</span> inscription ........ ok
+<span class="o">&gt;</span> équipe ............. solo ou à plusieurs
+<span class="o">&gt;</span> défis .............. web · pwn · crypto
+                       forensique · rétro
+                       osint
+<span class="d">$</span> valider flag{...}
+<span class="o">&gt;</span> +points · classement mis à jour
+<span class="d">$</span> <span class="cur"></span></pre>
+        </div>
+
+        <div class="ctf-copy rv">
+          <p class="eyebrow">CTF</p>
+          <h2 id="ctf-title-h">Prêt·e à relever le défi&nbsp;?</h2>
+          <p>Le CTF de BSides La Réunion, c’est l’occasion de tester tes compétences, de te mesurer à d’autres équipes et de vivre une expérience intense et fun. Au CyberTour, c’est nous qui organisons les épreuves.</p>
+          <a class="btn btn-primary" href="https://ctf.inge.re" target="_blank" rel="noopener"><span class="bi">Accéder à ctf.inge.re <span class="arr" aria-hidden="true">↗</span></span></a>
+        </div>
+
+        <ul class="ctf-points rv">
+          <li>
+            <span class="pt-ico"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 18L8 32l14 14M42 18l14 14-14 14M37 12l-10 40"/></svg></span>
+            <div><strong>Challenges variés</strong><span>Web, RE, Pwn, Forensics…</span></div>
+          </li>
+          <li>
+            <span class="pt-ico"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="20" r="9"/><path d="M14 54c0-12 8-19 18-19s18 7 18 19"/><path d="M16 27a8 8 0 0 1-3-11 8 8 0 0 1 9-3M48 27a8 8 0 0 0 3-11 8 8 0 0 0-9-3"/></svg></span>
+            <div><strong>Équipes &amp; solo</strong><span>Viens comme tu es&nbsp;!</span></div>
+          </li>
+          <li>
+            <span class="pt-ico"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8h24v18a12 12 0 0 1-24 0z"/><path d="M20 14h-9v4a10 10 0 0 0 9 10M44 14h9v4a10 10 0 0 1-9 10"/><path d="M32 38v10M23 56h18M26 48h12"/></svg></span>
+            <div><strong>Podium &amp; remise des prix</strong><span>Les meilleures équipes sont à l’honneur.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="wrap ctf-how">
+        <h3 class="rv">Comment jouer, en quatre étapes</h3>
+        <ol class="steps rv">
+          <li><span class="n">1</span><strong>Ouvrez la plateforme</strong><p>Rendez-vous sur <a class="u-link" href="https://ctf.inge.re" target="_blank" rel="noopener">ctf.inge.re</a> depuis un navigateur. Tout se passe là.</p></li>
+          <li><span class="n">2</span><strong>Inscrivez-vous</strong><p>Seul·e ou en équipe : mélangez les profils, c’est ce qui rend un CTF amusant.</p></li>
+          <li><span class="n">3</span><strong>Choisissez un défi</strong><p>Classés par catégorie et par difficulté. Commencez par ce qui vous parle.</p></li>
+          <li><span class="n">4</span><strong>Validez le flag</strong><p>Un flag trouvé, on le saisit. Les points tombent, le classement bouge.</p></li>
+        </ol>
+        <ul class="chips rv" aria-label="Catégories de défis courantes">
+          <li>Exploitation</li><li>Web</li><li>Cryptographie</li><li>Forensique</li><li>Rétro-ingénierie</li><li>OSINT &amp; divers</li>
+        </ul>
+        <details class="tips rv">
+          <summary>Premier CTF&nbsp;? Quatre conseils</summary>
+          <ul>
+            <li><strong>Formez une équipe variée.</strong> Une personne à l’aise en web, une autre en système, une troisième qui lit tout&nbsp;: c’est efficace.</li>
+            <li><strong>Commencez par les défis faciles.</strong> Ils donnent des points, mais surtout le rythme.</li>
+            <li><strong>Notez ce que vous essayez.</strong> Les pistes abandonnées reviennent souvent utiles dix minutes plus tard.</li>
+            <li><strong>Jouez fair-play.</strong> On attaque les défis, jamais la plateforme ni les autres joueurs. Le <a class="u-link" href="./code-de-conduite.html">code de conduite</a> s’applique.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ CONFÉRENCES ============ -->
+    <section class="conf" id="conferences" data-num="04" aria-labelledby="conf-title">
+      <div class="wrap conf-grid">
+        <div class="conf-copy rv">
+          <p class="eyebrow">Conférences</p>
+          <h2 id="conf-title">Des intervenants inspirants</h2>
+          <p>Des experts, des praticiens, des chercheurs… et des passionnés qui viennent partager leurs retours d’expérience, leurs découvertes et leurs visions du futur.</p>
+          <a class="btn btn-line" href="#bilan"><span class="bi">Voir le bilan 2026 <span class="arr" aria-hidden="true">→</span></span></a>
+        </div>
+        <div class="conf-rail rv">
+          <div class="conf-ctrl">
+            <button class="round" id="conf-prev" type="button" aria-label="Intervenants précédents"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l-6 6 6 6"/></svg></button>
+            <button class="round" id="conf-next" type="button" aria-label="Intervenants suivants"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg></button>
+          </div>
+          <ul class="speakers" id="speakers" tabindex="0" aria-label="Intervenants de l’édition 2026">
+            <li class="sp"><span class="sp-kind">Keynote · 2026</span><svg class="sil" viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="44" r="23"/><path d="M50 62h20v22c14 4 40 12 40 66H10c0-54 26-62 40-66z"/></svg><div class="sp-txt"><strong>Joel Grouffaud</strong><span>Cryptographie post-quantique · Université de La Réunion</span></div></li>
+            <li class="sp"><span class="sp-kind">Keynote · 2026</span><svg class="sil" viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="44" r="23"/><path d="M50 62h20v22c14 4 40 12 40 66H10c0-54 26-62 40-66z"/></svg><div class="sp-txt"><strong>Fanilo Harivelo</strong><span>Sécurité des logiciels · Chercheur</span></div></li>
+            <li class="sp"><span class="sp-kind">Keynote · 2026</span><svg class="sil" viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="44" r="23"/><path d="M50 62h20v22c14 4 40 12 40 66H10c0-54 26-62 40-66z"/></svg><div class="sp-txt"><strong>Siddique Vally-Adam</strong><span>FPGA et extraction de firmware</span></div></li>
+            <li class="sp"><span class="sp-kind">Conférence · 2026</span><svg class="sil" viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="44" r="23"/><path d="M50 62h20v22c14 4 40 12 40 66H10c0-54 26-62 40-66z"/></svg><div class="sp-txt"><strong>Thibaut Fontaine</strong><span>LLM et cybersécurité</span></div></li>
+            <li class="sp"><span class="sp-kind">Conférence · 2026</span><svg class="sil" viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="44" r="23"/><path d="M50 62h20v22c14 4 40 12 40 66H10c0-54 26-62 40-66z"/></svg><div class="sp-txt"><strong>Théophile Helleboid</strong><span>Rétro-ingénierie des QR codes des tickets Car Jaune</span></div></li>
+            <li class="sp sp-next"><span class="sp-kind">2027</span><div class="sp-txt"><strong>Et vous&nbsp;?</strong><span>L’appel à contributions 2027 ouvre bientôt. <a class="u-link" href="./appel-a-contributions.html">En savoir plus</a></span></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BILAN 2026 ============ -->
+    <section class="bilan" id="bilan" data-num="05" aria-labelledby="bilan-title">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">Édition précédente</p>
+          <h2 id="bilan-title">Bilan BSides Réunion 2026</h2>
+          <p>L’édition 2026 de BSides Réunion s’est tenue le 2&nbsp;avril à l’IUT de Saint-Pierre. Un grand merci à toutes et tous pour cette journée riche en échanges et en challenges&nbsp;!</p>
+        </header>
+
+        <dl class="stats rv">
+          <div><dt>Participants</dt><dd data-count="80" data-prefix="+">+80</dd></div>
+          <div><dt>Équipes CTF inscrites</dt><dd data-count="10" data-prefix="+">+10</dd></div>
+          <div><dt>Keynotes</dt><dd data-count="3">3</dd></div>
+          <div><dt>Conférences</dt><dd data-count="2">2</dd></div>
+        </dl>
+
+        <div class="bilan-grid">
+          <div class="bilan-col rv">
+            <h3>Podium CTF</h3>
+            <ol class="podium">
+              <li><b>1</b><div><strong>ESI’DEV</strong><span>1<sup>re</sup> place</span></div></li>
+              <li><b>2</b><div><strong>MD</strong><span>2<sup>e</sup> place</span></div></li>
+            </ol>
+          </div>
+          <div class="bilan-col rv">
+            <h3>Ce que vous en avez pensé</h3>
+            <ul class="bars">
+              <li style="--v:92%"><div><b>92&nbsp;%</b><span>ont appris de nouvelles choses</span></div><i aria-hidden="true"></i></li>
+              <li style="--v:83%"><div><b>83&nbsp;%</b><span>ont apprécié le format CTF</span></div><i aria-hidden="true"></i></li>
+              <li style="--v:100%"><div><b>100&nbsp;%</b><span>souhaitent une édition 2027</span></div><i aria-hidden="true"></i></li>
+            </ul>
+            <p class="fine">Retours des participants à l’issue de la journée du 2 avril 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INFOS PRATIQUES ============ -->
+    <section class="infos" id="infos" data-num="06" aria-labelledby="infos-title">
+      <div class="infos-photo slot" data-photo="beach" data-alt="Plage de Boucan Canot, Saint-Gilles" aria-hidden="true"><img class="art" src="./img/art/plage.svg" width="660" height="620" alt="" loading="lazy"></div>
+      <div class="wrap infos-grid">
+        <div class="infos-copy rv">
+          <p class="eyebrow">Infos pratiques</p>
+          <h2 id="infos-title">Rendez-vous<br>en 2027</h2>
+          <ul class="facts">
+            <li>
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="12" width="48" height="44" rx="4"/><path d="M8 25h48M20 5v13M44 5v13M22 40l7 7 13-14"/></svg>
+              <div><strong>Date</strong><span>Mardi 9 mars 2027 · <span id="count-2027">Dans 144 jours</span></span></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 59S12 39 12 26a20 20 0 0 1 40 0c0 13-20 33-20 33z"/><circle cx="32" cy="26" r="7"/></svg>
+              <div><strong>Lieu</strong><span>ESIROI, campus de Terre-Sainte · 40 avenue de Soweto, Saint-Pierre</span></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="20" r="9"/><path d="M14 54c0-12 8-19 18-19s18 7 18 19"/><path d="M16 27a8 8 0 0 1-3-11 8 8 0 0 1 9-3M48 27a8 8 0 0 0 3-11 8 8 0 0 0-9-3"/></svg>
+              <div><strong>Format</strong><span>Conférences, CTF, ateliers, démos, networking…</span></div>
+            </li>
+          </ul>
+          <a class="btn btn-line" href="https://www.instagram.com/bsidesreunion" target="_blank" rel="noopener"><span class="bi">Rester informé <span class="arr" aria-hidden="true">↗</span></span></a>
+        </div>
+
+        <figure class="map-isle rv" aria-label="Carte de La Réunion, Saint-Pierre repérée">
+          <img src="./img/map.svg" width="790" height="702" alt="">
+          <span class="spot" aria-hidden="true">
+            <svg class="arrow" viewBox="0 0 64 28" width="64" height="28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26C20 24 40 16 64 0"/><path d="M48 0h16L52 12"/></svg>
+            <a class="here" href="./jeu.html" tabindex="-1">Ici&nbsp;!</a>
+          </span>
+        </figure>
+      </div>
+
+      <div class="wrap venue rv" id="acces">
+        <div class="venue-info">
+          <p class="eyebrow">Comment venir</p>
+          <h3>ESIROI · IUT de Saint-Pierre</h3>
+          <address>Campus de Terre-Sainte<br>40 avenue de Soweto<br>97410 Saint-Pierre, La Réunion</address>
+          <p>Accès&nbsp;: bus, arrêt «&nbsp;Technopole&nbsp;»&nbsp;; en voiture, direction Saint-Joseph, sortie IUT / ESIROI. Privilégiez la marche, le vélo ou le covoiturage.</p>
+          <div class="venue-btns">
+            <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=40%20avenue%20de%20Soweto%2097410%20Saint-Pierre%20La%20R%C3%A9union" target="_blank" rel="noopener"><span class="bi">Itinéraire <span class="arr" aria-hidden="true">↗</span></span></a>
+            <button class="btn btn-line btn-sm" id="copy-address" type="button"><span class="bi"><span class="bl">Copier l’adresse</span></span></button>
+          </div>
+        </div>
+        <div class="map" id="map">
+          <img src="./img/art/south.svg" width="800" height="520" alt="" loading="lazy">
+          <span class="map-pin" aria-hidden="true"><svg viewBox="0 0 40 52" width="34" height="44" fill="none" stroke="#C69BFF" stroke-width="3" stroke-linejoin="round"><path d="M20 49S5 32 5 20a15 15 0 0 1 30 0c0 12-15 29-15 29z"/><circle cx="20" cy="20" r="5.5" fill="#C69BFF" stroke="none"/></svg></span>
+          <div class="map-cta">
+            <button class="btn btn-primary btn-sm" id="map-load" type="button"><span class="bi">Afficher la carte interactive</span></button>
+            <p>La carte ne se charge qu’à votre clic : Google peut alors déposer des traceurs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARTICIPER ============ -->
+    <div class="lava-rule rv" aria-hidden="true"></div>
+
+    <section class="join" id="participer" data-num="07" aria-labelledby="join-title">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">S’engager</p>
+          <h2 id="join-title">Participez à l’aventure</h2>
+          <p>BSides Réunion vit grâce à celles et ceux qui s’y impliquent. Il y a trois façons de s’y mettre.</p>
+        </header>
+        <div class="join-grid">
+          <article class="join-card rv"><span class="num" aria-hidden="true">01</span><h3>Intervenir</h3><p>Proposez une conférence, un atelier ou une démo pour 2027. Découvrez le principe, ce que nous attendons des intervenant·es et comment postuler.</p><a class="u-link" href="./appel-a-contributions.html">Proposer une intervention →</a></article>
+          <article class="join-card rv"><span class="num" aria-hidden="true">02</span><h3>Aider</h3><p>Accueil, logistique, modération de salle : l’événement repose sur ses bénévoles. En échange, accès à l’événement, T-shirt Staff et repas.</p><a class="u-link" href="./benevoles.html">Devenir bénévole →</a></article>
+          <article class="join-card rv"><span class="num" aria-hidden="true">03</span><h3>Soutenir</h3><p>Entreprise, institution ou association : vous voulez soutenir la communauté cyber de La Réunion ? Découvrez les formules de partenariat.</p><a class="u-link" href="./partenaires.html">Devenir partenaire →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="slot cta-bg" data-photo="cta" data-alt="Piton de la Fournaise vu de nuit depuis le Piton des Neiges"><img class="art" src="./img/art/nuit.svg" width="1600" height="460" alt="" loading="lazy"></div>
+      <div class="cta-shade" aria-hidden="true"></div>
+      <div class="wrap cta-in">
+        <div class="cta-copy rv">
+          <p class="eyebrow">Prêt·e pour l’aventure&nbsp;?</p>
+          <h2 id="cta-title">Rejoins la communauté<br>BSides La Réunion 2027</h2>
+          <p>Écris-nous dès maintenant et sois parmi les premiers à vivre cette édition inoubliable.</p>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://discord.gg/W29jZfNpn" target="_blank" rel="noopener"><span class="bi">Rejoindre le Discord <span class="arr" aria-hidden="true">↗</span></span></a>
+            <a class="btn btn-line" href="mailto:contact@bsides-reunion.re"><span class="bi">Nous écrire <span class="arr" aria-hidden="true">→</span></span></a>
+          </div>
+        </div>
+        <div class="cta-script rv" aria-hidden="true">
+          <span>Same</span><span>island</span><span>Bigger</span><span>ideas</span>
+          <svg class="cta-palm" viewBox="0 0 64 80" width="64" height="80" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M30 76c2-14 2-30-2-46"/><path d="M28 30c-6-10-16-12-24-7M28 30c-2-12-10-19-20-19M28 30c5-11 15-15 25-11M28 30c9-4 18-1 24 7M28 30c3-10 2-19-1-26"/></svg>
+          <svg class="cta-line" viewBox="0 0 300 40" width="300" height="40" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M6 34C80 26 190 14 294 6"/></svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PIED DE PAGE ============ -->
+  <footer class="foot">
+    <img class="foot-art" src="./img/art/foot.svg" width="760" height="690" alt="" loading="lazy">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <a class="brand brand-foot" href="#accueil" id="footer-giant" aria-label="BSides La Réunion — retour en haut">
+          <img src="./logos/bsides-blanc.png" width="480" height="207" alt="BSides La Réunion">
+        </a>
+        <p class="foot-tag">La cybersécurité a aussi son île.</p>
+        <a class="foot-mail" href="mailto:contact@bsides-reunion.re">contact@bsides-reunion.re</a>
+        <ul class="socials">
+          <li><a href="https://www.instagram.com/bsidesreunion/" target="_blank" rel="noopener" aria-label="Instagram de BSides Réunion"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></li>
+          <li><a href="https://discord.gg/W29jZfNpn" target="_blank" rel="noopener" aria-label="Discord de BSides Réunion"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M20.3 4.4a19.8 19.8 0 0 0-4.9-1.5l-.1 0c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0c-.2-.4-.5-.9-.6-1.3a.1.1 0 0 0-.1 0A19.7 19.7 0 0 0 3.6 4.4a.1.1 0 0 0 0 0C.5 9 0 13.6.1 18.1a.1.1 0 0 0 .1.1 19.9 19.9 0 0 0 6 3 .1.1 0 0 0 .1 0c.5-.6.9-1.3 1.2-2a.1.1 0 0 0 0-.1 13 13 0 0 1-1.9-.9.1.1 0 0 1 0-.2l.4-.3a.1.1 0 0 1 .1 0c3.9 1.8 8.2 1.8 12 0a.1.1 0 0 1 .1 0l.4.3a.1.1 0 0 1 0 .2 12.3 12.3 0 0 1-1.9.9.1.1 0 0 0 0 .1c.4.7.8 1.4 1.2 2a.1.1 0 0 0 .1 0 19.8 19.8 0 0 0 6-3 .1.1 0 0 0 .1-.1c.5-5.2-.8-9.7-3.5-13.7a.1.1 0 0 0 0 0zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.7 10.4 8 10.4s2.2 1.1 2.2 2.5-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.5 2.2-2.5 2.2 1.1 2.2 2.5-1 2.4-2.2 2.4z"/></svg></a></li>
+        </ul>
+        <p class="foot-addr">ESIROI · 40 avenue de Soweto<br>97410 Saint-Pierre, La Réunion</p>
+      </div>
+      <nav class="foot-col" aria-label="L’événement">
+        <p class="foot-h">L’événement</p>
+        <ul>
+          <li><a href="#cybertour">CyberTour · 23 octobre 2026</a></li>
+          <li><a href="#ctf">Les CTF</a></li>
+          <li><a href="#conferences">Conférences</a></li>
+          <li><a href="#bilan">Bilan 2026</a></li>
+          <li><a href="#infos">BSides 2027 · 9 mars</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="S’engager">
+        <p class="foot-h">S’engager</p>
+        <ul>
+          <li><a href="./appel-a-contributions.html">Proposer une intervention</a></li>
+          <li><a href="./benevoles.html">Devenir bénévole</a></li>
+          <li><a href="./partenaires.html">Devenir partenaire</a></li>
+          <li><a href="./code-de-conduite.html">Code de conduite</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Liens">
+        <p class="foot-h">Liens</p>
+        <ul>
+          <li><a href="https://ctf.inge.re" target="_blank" rel="noopener">ctf.inge.re <span aria-hidden="true">↗</span></a></li>
+          <li><a href="https://cybertour.re/en/" target="_blank" rel="noopener">cybertour.re <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap foot-bottom">
+      <p>© <span id="year">2026</span> Association BSides Réunion</p>
+      <p class="foot-legal"><a href="./mentions-legales.html">Mentions légales</a><a href="./confidentialite.html">Confidentialité</a><a href="./cookies.html">Cookies</a></p>
+      <p>Fait à La Réunion</p>
+      <a class="foot-top" href="#accueil">Haut de page <span aria-hidden="true">↑</span></a>
+    </div>
+    <p class="wrap photo-credits">Photos : <a href="https://commons.wikimedia.org/wiki/File:Cap_la_Houssaye_-_Plage_de_l%27%C3%AEle_de_La_R%C3%A9union.jpg">Cap La Houssaye, Alexandre Péribé</a> · <a href="https://commons.wikimedia.org/wiki/File:Cirque_Mafate_Blick_vom_Maido.JPG">Cirque de Mafate, Geolina</a> · <a href="https://commons.wikimedia.org/wiki/File:Strand_von_Boucan_Canot_04.jpg">Boucan Canot, Olaf2</a> · <a href="https://commons.wikimedia.org/wiki/File:Piton_de_la_Fournaise_night_@_Piton_des_Neiges.jpg">Piton de la Fournaise, Rémih</a>. Licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC BY-SA 4.0</a>.</p>
+  </footer>
+
+  <script src="./js/home.js" defer></script>
+  <script src="./js/eggs.js" defer></script>
+</body>
+</html>

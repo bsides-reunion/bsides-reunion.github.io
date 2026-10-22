@@ -1,0 +1,7 @@
+Polices auto-hébergées (format woff2, sous-ensemble latin), distribuées via le projet Fontsource.
+
+- Barlow Condensed — Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)
+- IBM Plex Sans — Copyright © 2017 IBM Corp. (https://github.com/IBM/plex)
+- IBM Plex Mono — Copyright © 2017 IBM Corp. (https://github.com/IBM/plex)
+
+Les trois sont publiées sous SIL Open Font License 1.1 : https://openfontlicense.org
